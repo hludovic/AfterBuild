@@ -6,10 +6,26 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct TabMapView: View {
+    @State private var coordonateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D( latitude: 37.331516, longitude: -121.891054),
+        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    )
     var body: some View {
-        Text("Map")
+        ZStack {
+            Map(coordinateRegion: $coordonateRegion)
+                .ignoresSafeArea(.all, edges: .top)
+            VStack {
+                Image("ddg-map-logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 70)
+                    .shadow(radius: 10)
+                Spacer()
+            }
+        }
     }
 }
 
