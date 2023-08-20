@@ -11,61 +11,60 @@ struct LocationDetailView: View {
     let columns = [GridItem(.flexible()),
                    GridItem(.flexible()),
                    GridItem(.flexible())]
-
+    
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 17) {
-                Image("default-banner-asset")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 120)
-                HStack {
-                    Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
+        VStack(spacing: 17) {
+            Image("default-banner-asset")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 120)
+            HStack {
+                Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
+            .padding(.horizontal)
+            Text("Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
+                .lineLimit(3)
+                .minimumScaleFactor(0.75)
+                .frame(height: 70)
                 .padding(.horizontal)
-                Text("Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.75)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.horizontal)
-
-                ZStack {
-                    Capsule()
-                        .frame(height: 80)
-                        .foregroundColor(Color(uiColor: .secondarySystemBackground))
-                    HStack(spacing: 20) {
-                        Button {
-                            print("action")
-                        } label: {
-                            LocationActionButton(color: .brandPrimary, imageName: "location.fill")
-                        }
-                        Button {
-                            print("action")
-                        } label: {
-                            LocationActionButton(color: .brandPrimary, imageName: "network")
-                        }
-                        Button {
-                            print("action")
-                        } label: {
-                            LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
-                        }
-                        Button {
-                            print("action")
-                        } label: {
-                            LocationActionButton(color: .red, imageName: "person.fill.checkmark")
-                        }
+            
+            ZStack {
+                Capsule()
+                    .frame(height: 80)
+                    .foregroundColor(Color(uiColor: .secondarySystemBackground))
+                HStack(spacing: 20) {
+                    Button {
+                        print("action")
+                    } label: {
+                        LocationActionButton(color: .brandPrimary, imageName: "location.fill")
+                    }
+                    Button {
+                        print("action")
+                    } label: {
+                        LocationActionButton(color: .brandPrimary, imageName: "network")
+                    }
+                    Button {
+                        print("action")
+                    } label: {
+                        LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
+                    }
+                    Button {
+                        print("action")
+                    } label: {
+                        LocationActionButton(color: .red, imageName: "person.fill.checkmark")
                     }
                 }
-                .padding(.horizontal)
-
-                Text("Who's There")
-                    .fontWeight(.bold)
-                    .font(.title2)
-
+            }
+            .padding(.horizontal)
+            
+            Text("Who's There")
+                .fontWeight(.bold)
+                .font(.title2)
+            
+            ScrollView {
                 LazyVGrid(columns: columns) {
                     FirstNameAvatarView(firstName: "Pierre")
                     FirstNameAvatarView(firstName: "Paul")
@@ -75,26 +74,26 @@ struct LocationDetailView: View {
                     FirstNameAvatarView(firstName: "Antoine")
                     FirstNameAvatarView(firstName: "Lise")
                 }
-
-                Spacer()
-
             }
-            .navigationTitle("Location Name")
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationTitle("Location Name")
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView()
+        NavigationStack {
+            LocationDetailView()
+        }
     }
 }
 
 struct LocationActionButton: View {
     var color: Color
     var imageName: String
-
+    
     var body: some View {
         ZStack {
             Circle()
@@ -111,7 +110,7 @@ struct LocationActionButton: View {
 
 struct FirstNameAvatarView: View {
     var firstName: String
-
+    
     var body: some View {
         VStack {
             AvatarView(size: 65)
