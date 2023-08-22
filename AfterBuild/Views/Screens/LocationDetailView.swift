@@ -14,22 +14,14 @@ struct LocationDetailView: View {
     
     var body: some View {
         VStack(spacing: 17) {
-            Image("default-banner-asset")
-                .resizable()
-                .scaledToFill()
-                .frame(height: 120)
+            BannerImageView(imageName: "default-banner-asset")
             HStack {
-                Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                AddressView(address: "1 S Market St Ste 40")
                 Spacer()
             }
             .padding(.horizontal)
-            Text("Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
-                .lineLimit(3)
-                .minimumScaleFactor(0.75)
-                .frame(height: 70)
-                .padding(.horizontal)
+
+            DescriptionView(description: "Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
             
             ZStack {
                 Capsule()
@@ -78,7 +70,7 @@ struct LocationDetailView: View {
         }
         .navigationTitle("Location Name")
         .navigationBarTitleDisplayMode(.inline)
-        
+        Spacer()
     }
 }
 
@@ -119,5 +111,38 @@ struct FirstNameAvatarView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
         }
+    }
+}
+
+struct BannerImageView: View {
+    var imageName: String
+
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .scaledToFill()
+            .frame(height: 120)
+    }
+}
+
+struct AddressView: View {
+    var address: String
+
+    var body: some View {
+        Label(address, systemImage: "mappin.and.ellipse")
+            .font(.caption)
+            .foregroundColor(.secondary)
+    }
+}
+
+struct DescriptionView: View {
+    var description: String
+
+    var body: some View {
+        Text(description)
+            .lineLimit(3)
+            .minimumScaleFactor(0.75)
+            .frame(height: 70)
+            .padding(.horizontal)
     }
 }

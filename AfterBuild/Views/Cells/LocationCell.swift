@@ -1,47 +1,11 @@
 //
-//  TabLocationsView.swift
+//  LocationCell.swift
 //  AfterBuild
 //
-//  Created by Ludovic HENRY on 18/08/2023.
+//  Created by Ludovic HENRY on 22/08/2023.
 //
 
 import SwiftUI
-
-struct TabLocationsView: View {
-    var body: some View {
-        NavigationStack {
-            List {
-                ForEach( 0..<10) { item in
-                    NavigationLink {
-                        LocationDetailView()
-                    } label: {
-                        LocationCell()
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .navigationTitle("Spots")
-        }
-    }
-}
-
-struct TabLocationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabLocationsView()
-    }
-}
-
-struct AvatarView: View {
-    var size: CGFloat
-
-    var body: some View {
-        Image("default-avatar")
-            .resizable()
-            .scaledToFit()
-            .frame(width: size, height: size)
-            .clipShape(Circle())
-    }
-}
 
 struct LocationCell: View {
     var body: some View {
@@ -69,5 +33,11 @@ struct LocationCell: View {
             }
             .padding(.leading)
         }
+    }
+}
+
+struct LocationCell_Previews: PreviewProvider {
+    static var previews: some View {
+        LocationCell()
     }
 }

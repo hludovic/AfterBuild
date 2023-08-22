@@ -18,14 +18,11 @@ struct TabMapView: View {
             Map(coordinateRegion: $coordonateRegion)
                 .ignoresSafeArea(.all, edges: .top)
             VStack {
-                Image("ddg-map-logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 70)
-                    .shadow(radius: 10)
+                LogoView().shadow(radius: 10)
                 Spacer()
             }
         }
+        .toolbarBackground(.visible, for: .tabBar)
     }
 }
 
