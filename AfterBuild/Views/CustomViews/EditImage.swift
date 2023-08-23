@@ -20,6 +20,9 @@ struct EditImage: View {
 
 struct EditImage_Previews: PreviewProvider {
     static var previews: some View {
-        EditImage()
+        ZStack {
+            Color.black
+            EditImage()
+        }
     }
 }

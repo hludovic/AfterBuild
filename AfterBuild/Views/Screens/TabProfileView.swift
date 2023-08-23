@@ -37,12 +37,9 @@ struct TabProfileView: View {
             VStack(alignment: .leading, spacing: 7) {
                 CharactersRemainView(currentCount: bio.count)
 
-                TextEditor(text: $bio)
-                    .frame(height: 100)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 1)
-                    }
+                TextField("Enter your bio", text: $bio, axis: .vertical)
+                    .textFieldStyle(.roundedBorder)
+                    .lineLimit(4...6)
             }
 
             Spacer()

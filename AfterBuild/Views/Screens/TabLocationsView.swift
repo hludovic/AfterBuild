@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct TabLocationsView: View {
+    @State private var locations: [SpotLocation] = [SpotLocation(record: MockData.location)]
+
     var body: some View {
         NavigationStack {
             List {
-                ForEach( 0..<10) { item in
+                ForEach(locations, id: \.ckRecordID) { location in
                     NavigationLink {
-                        LocationDetailView()
+                        LocationDetailView(location: location)
                     } label: {
-                        LocationCell()
+                        LocationCell(location: location)
                     }
                 }
             }

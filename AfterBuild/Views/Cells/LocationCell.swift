@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LocationCell: View {
+    var location: SpotLocation
+
     var body: some View {
         HStack {
             Image("default-square-asset")
@@ -18,11 +20,12 @@ struct LocationCell: View {
                 .padding(.vertical, 7)
 
             VStack(alignment: .leading) {
-                Text("Test Location Name")
+                Text(location.name)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
+                    .frame(maxWidth: .infinity)
                 HStack {
                     AvatarView(size: 35)
                     AvatarView(size: 35)
@@ -38,6 +41,6 @@ struct LocationCell: View {
 
 struct LocationCell_Previews: PreviewProvider {
     static var previews: some View {
-        LocationCell()
+        LocationCell(location: SpotLocation(record: MockData.location))
     }
 }
