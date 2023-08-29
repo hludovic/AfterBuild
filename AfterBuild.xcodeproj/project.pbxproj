@@ -20,6 +20,7 @@
 		43849C682A9D50A400CFDCD2 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C672A9D50A400CFDCD2 /* AlertItem.swift */; };
 		43849C6B2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */; };
 		43849C6D2A9D7FA300CFDCD2 /* TabMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */; };
+		43849C6F2A9D899300CFDCD2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6E2A9D899300CFDCD2 /* LocationManager.swift */; };
 		439554AC2A96B8AF0050B82B /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439554AB2A96B8AF0050B82B /* CloudKitManager.swift */; };
 		439554AE2A96CEB70050B82B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439554AD2A96CEB70050B82B /* Constants.swift */; };
 		43A098912A90105D00B0942A /* AfterBuildApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A098902A90105D00B0942A /* AfterBuildApp.swift */; };
@@ -55,6 +56,7 @@
 		43849C672A9D50A400CFDCD2 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLocationsViewModel.swift; sourceTree = "<group>"; };
 		43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMapViewModel.swift; sourceTree = "<group>"; };
+		43849C6E2A9D899300CFDCD2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		439554AB2A96B8AF0050B82B /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		439554AD2A96CEB70050B82B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43A0988D2A90105D00B0942A /* AfterBuild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AfterBuild.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 			children = (
 				43A3B69D2A95236200905D3A /* Extensions */,
 				439554AB2A96B8AF0050B82B /* CloudKitManager.swift */,
+				43849C6E2A9D899300CFDCD2 /* LocationManager.swift */,
 				439554AD2A96CEB70050B82B /* Constants.swift */,
 				43849C672A9D50A400CFDCD2 /* AlertItem.swift */,
 			);
@@ -162,9 +165,9 @@
 				43A098902A90105D00B0942A /* AfterBuildApp.swift */,
 				43A098942A90105D00B0942A /* Assets.xcassets */,
 				4304AFF82A9699B20087F7E8 /* Model */,
+				439554AA2A96B87E0050B82B /* Utilities */,
 				43849C692A9D7EC300CFDCD2 /* ViewModel */,
 				43A3B69E2A9523A500905D3A /* Views */,
-				439554AA2A96B87E0050B82B /* Utilities */,
 				43A098962A90105D00B0942A /* Preview Content */,
 			);
 			path = AfterBuild;
@@ -193,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				43A3B6972A951EB500905D3A /* CustomModifiers.swift */,
-				43A3B6A02A95246D00905D3A /* Cells */,
 				43A3B6A12A95247900905D3A /* CustomViews */,
 				43A3B69F2A9523AD00905D3A /* Screens */,
 			);
@@ -212,17 +214,10 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		43A3B6A02A95246D00905D3A /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				43A3B6932A9511DB00905D3A /* LocationCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		43A3B6A12A95247900905D3A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				43A3B6932A9511DB00905D3A /* LocationCell.swift */,
 				43A3B69B2A9520E000905D3A /* ButtonText.swift */,
 				43A3B6A22A9524D300905D3A /* LogoView.swift */,
 				43A3B6952A95121D00905D3A /* AvatarView.swift */,
@@ -310,6 +305,7 @@
 				43A098AA2A9018BC00B0942A /* TabProfileView.swift in Sources */,
 				43A098A62A90184900B0942A /* TabMapView.swift in Sources */,
 				4304B0072A96B18C0087F7E8 /* AddressView.swift in Sources */,
+				43849C6F2A9D899300CFDCD2 /* LocationManager.swift in Sources */,
 				439554AE2A96CEB70050B82B /* Constants.swift in Sources */,
 				43A3B69C2A9520E000905D3A /* ButtonText.swift in Sources */,
 				436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */,

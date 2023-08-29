@@ -9,16 +9,12 @@ import SwiftUI
 import MapKit
 
 struct TabMapView: View {
-    @State private var coordonateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D( latitude: 37.331516, longitude: -121.891054),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
 
-    @State private var alert: AlertItem?
+    @StateObject var viewModel = TabMapViewModel()
 
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $coordonateRegion)
+            Map(coordinateRegion: $viewModel.coordonateRegion)
                 .ignoresSafeArea(.all, edges: .top)
             VStack {
                 LogoView().shadow(radius: 10)
@@ -26,19 +22,12 @@ struct TabMapView: View {
             }
         }
         .onAppear{
-            Task {
-                do {
-                    let arr = try await CloudKitManager.shared.getLocations()
-                    print(arr)
-                } catch {
-                    alert = AlertContext.unableToGetLocations
-                }
-            }
+            viewModel.getLocations()
         }
         .toolbarBackground(.visible, for: .tabBar)
-        .alert(item: $alert, content: { item in
-            Alert(title: alert!.title, message: alert?.message, dismissButton: alert?.dismissButton)
-        })
+        .alert(item: $viewModel.alertItem) { item in
+            Alert(title: item.title, message: item.message, dismissButton: item.dismissButton)
+        }
     }
 }
 
