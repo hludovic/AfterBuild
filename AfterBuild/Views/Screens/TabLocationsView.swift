@@ -13,7 +13,7 @@ struct TabLocationsView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(locations, id: \.ckRecordID) { location in
+                ForEach(locations) { location in
                     NavigationLink {
                         LocationDetailView(location: location)
                     } label: {

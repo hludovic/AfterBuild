@@ -9,20 +9,23 @@ import SwiftUI
 import MapKit
 
 struct TabMapView: View {
-
+    @EnvironmentObject private var locationManager: LocationManager
     @StateObject var viewModel = TabMapViewModel()
 
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $viewModel.coordonateRegion)
-                .ignoresSafeArea(.all, edges: .top)
+            Map(coordinateRegion: $viewModel.coordonateRegion, annotationItems: locationManager.locations) { location in
+                MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
+            }
             VStack {
                 LogoView().shadow(radius: 10)
                 Spacer()
             }
         }
         .onAppear{
-            viewModel.getLocations()
+            if locationManager.locations.isEmpty {
+                viewModel.getLocations(for: locationManager)
+            }
         }
         .toolbarBackground(.visible, for: .tabBar)
         .alert(item: $viewModel.alertItem) { item in
@@ -34,5 +37,6 @@ struct TabMapView: View {
 struct TabMapView_Previews: PreviewProvider {
     static var previews: some View {
         TabMapView()
+            .environmentObject(LocationManager())
     }
 }

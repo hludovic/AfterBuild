@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct AfterBuildApp: App {
+
+    let locationManager: LocationManager = LocationManager()
+
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .environmentObject(locationManager)
         }
     }
 }

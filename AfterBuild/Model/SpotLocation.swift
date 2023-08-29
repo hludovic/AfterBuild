@@ -7,8 +7,8 @@
 
 import CloudKit
 
-struct SpotLocation {
-    let ckRecordID: CKRecord.ID
+struct SpotLocation: Identifiable {
+    let id: CKRecord.ID
     let name: String
     let address: String
     let description: String
@@ -19,7 +19,7 @@ struct SpotLocation {
     let phoneNumber: String
 
     init(record: CKRecord) {
-        ckRecordID = record.recordID
+        id = record.recordID
         name = record[SpotLocation.kName] as? String ?? "N/A"
         address = record[SpotLocation.kAddress] as? String ?? "N/A"
         description = record[SpotLocation.kDescription] as? String ?? "N/A"

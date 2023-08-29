@@ -13,17 +13,15 @@ final class TabMapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
 
-    @Published var locations: [SpotLocation] = []
-
     @Published var alertItem: AlertItem?
 
-    func getLocations() {
+    func getLocations(for locationManager: LocationManager) {
         Task {
             do {
                 let locationsResult = try await CloudKitManager.shared.getLocations()
-                locations = locationsResult
+                await MainActor.run { locationManager.locations = locationsResult }
             } catch {
-                alertItem = AlertContext.unableToGetLocations
+                await MainActor.run{ alertItem = AlertContext.unableToGetLocations }
             }
         }
     }
