@@ -8,15 +8,6 @@
 import CloudKit
 
 struct SpotLocation {
-    static let kName = "name"
-    static let kAddress = "address"
-    static let kDescription = "description"
-    static let kBannerAsset = "bannerAsset"
-    static let kSquareAsset = "squareAsset"
-    static let kLocation = "location"
-    static let kWebsiteURL = "websiteURL"
-    static let kPhoneNumber = "phoneNumber"
-
     let ckRecordID: CKRecord.ID
     let name: String
     let address: String

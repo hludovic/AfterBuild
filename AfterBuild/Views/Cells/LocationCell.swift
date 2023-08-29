@@ -25,7 +25,7 @@ struct LocationCell: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
                     AvatarView(size: 35)
                     AvatarView(size: 35)

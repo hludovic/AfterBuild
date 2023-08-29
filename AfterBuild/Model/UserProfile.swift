@@ -8,13 +8,6 @@
 import CloudKit
 
 struct UserProfile {
-    static let kFirstName = "firstName"
-    static let kLastName = "lastName"
-    static let kCompagnyName = "compagnyName"
-    static let kBio = "bio"
-    static let kAvatar = "avatar"
-    static let kIsCheckedIn = "isCheckedIn"
-
     let ckRecordID: CKRecord.ID
     let firstName: String
     let lastName: String
@@ -31,5 +24,4 @@ struct UserProfile {
         bio = record[UserProfile.kBio] as? String ?? "N/A"
         avatar = record[UserProfile.kAvatar] as? CKAsset
     }
-
 }
