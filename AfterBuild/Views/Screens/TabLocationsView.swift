@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct TabLocationsView: View {
-    @State private var locations: [SpotLocation] = [SpotLocation(record: MockData.location)]
+
+    @EnvironmentObject private var locationManager: LocationManager
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(locations) { location in
+                ForEach(locationManager.locations) { location in
                     NavigationLink {
                         LocationDetailView(location: location)
                     } label: {
@@ -30,6 +31,7 @@ struct TabLocationsView: View {
 struct TabLocationsView_Previews: PreviewProvider {
     static var previews: some View {
         TabLocationsView()
+            .environmentObject(LocationManager())
     }
 }
 

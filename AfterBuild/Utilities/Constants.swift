@@ -5,13 +5,26 @@
 //  Created by Ludovic HENRY on 23/08/2023.
 //
 
-import Foundation
+import UIKit
 
 enum RecordType {
     static let location = "SpotLocation"
     static let profile = "UserProfile"
 }
 
+enum PlaceholderImage {
+    static let avatar = UIImage(named: "default-avatar")!
+    static let square = UIImage(named: "default-square-asset")!
+    static let banner = UIImage(named: "default-banner-asset")!
+}
+
+enum ImageDimention {
+    case square, banner
+
+    static func getPlaceholder(for dimention: ImageDimention) -> UIImage {
+        return dimention == .square ? PlaceholderImage.square : PlaceholderImage.banner
+    }
+}
 
 extension SpotLocation {
     static let kName = "name"

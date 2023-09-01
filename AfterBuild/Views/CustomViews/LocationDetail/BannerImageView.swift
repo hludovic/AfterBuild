@@ -9,10 +9,10 @@ import SwiftUI
 
 
 struct BannerImageView: View {
-    var imageName: String
+    var image: UIImage
 
     var body: some View {
-        Image(imageName)
+        Image(uiImage: image)
             .resizable()
             .scaledToFill()
             .frame(height: 120)
@@ -21,6 +21,6 @@ struct BannerImageView: View {
 
 struct BannerImageView_Previews: PreviewProvider {
     static var previews: some View {
-        BannerImageView(imageName: "default-banner-asset")
+        BannerImageView(image: PlaceholderImage.banner)
     }
 }

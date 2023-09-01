@@ -16,7 +16,7 @@ struct LocationDetailView: View {
     
     var body: some View {
         VStack(spacing: 17) {
-            BannerImageView(imageName: "default-banner-asset")
+            BannerImageView(image: location.createBannerImage())
             HStack {
                 AddressView(address: location.address)
                 Spacer()
@@ -69,7 +69,6 @@ struct LocationDetailView: View {
             }
         }
         .navigationTitle(location.name)
-        .navigationBarTitleDisplayMode(.inline)
         Spacer()
     }
 }
