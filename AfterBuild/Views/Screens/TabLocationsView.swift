@@ -22,7 +22,6 @@ struct TabLocationsView: View {
                     }
                 }
             }
-            .listStyle(.plain)
             .navigationTitle("Spots")
         }
     }

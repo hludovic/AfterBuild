@@ -14,15 +14,18 @@ struct TabMapView: View {
 
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $viewModel.coordonateRegion, annotationItems: locationManager.locations) { location in
+            Map(coordinateRegion: $viewModel.coordonateRegion,showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
             }
+            .ignoresSafeArea()
+            .tint(.afterBuildRed)
             VStack {
                 LogoView().shadow(radius: 10)
                 Spacer()
             }
         }
         .onAppear{
+            viewModel.checkIfLocationServicesEnabled()
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
             }
