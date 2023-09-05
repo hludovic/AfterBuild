@@ -17,6 +17,8 @@
 		4304B0092A96B1AF0087F7E8 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0082A96B1AF0087F7E8 /* DescriptionView.swift */; };
 		431407292A97E3C1005B48BF /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431407282A97E3C1005B48BF /* CKRecord+Ext.swift */; };
 		4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */; };
+		4351C2C52AA7885200592A5E /* OnboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2C42AA7885200592A5E /* OnboardInfoView.swift */; };
+		4351C2CB2AA78B2C00592A5E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */; };
 		436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D186C2A91553C00E43BD1 /* LocationDetailView.swift */; };
 		43849C682A9D50A400CFDCD2 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C672A9D50A400CFDCD2 /* AlertItem.swift */; };
 		43849C6B2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */; };
@@ -56,6 +58,8 @@
 		4304B0082A96B1AF0087F7E8 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		431407282A97E3C1005B48BF /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 		4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
+		4351C2C42AA7885200592A5E /* OnboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardInfoView.swift; sourceTree = "<group>"; };
+		4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		436D186C2A91553C00E43BD1 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		43849C672A9D50A400CFDCD2 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLocationsViewModel.swift; sourceTree = "<group>"; };
@@ -106,7 +110,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4304AFFF2A96B0B40087F7E8 /* LocationDetail */ = {
+		4304AFFF2A96B0B40087F7E8 /* LocationDetailView */ = {
 			isa = PBXGroup;
 			children = (
 				4304B0002A96B0CB0087F7E8 /* LocationActionButton.swift */,
@@ -115,16 +119,50 @@
 				4304B0042A96B15F0087F7E8 /* BannerImageView.swift */,
 				4304B0062A96B18C0087F7E8 /* AddressView.swift */,
 			);
-			path = LocationDetail;
+			path = LocationDetailView;
 			sourceTree = "<group>";
 		};
-		4304B00A2A96B3290087F7E8 /* TabProfile */ = {
+		4304B00A2A96B3290087F7E8 /* TabProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				43A3B6A42A95251200905D3A /* RoudedBackground.swift */,
 				43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */,
+				43A3B6A42A95251200905D3A /* RoudedBackground.swift */,
 			);
-			path = TabProfile;
+			path = TabProfileView;
+			sourceTree = "<group>";
+		};
+		4351C2C12AA7879E00592A5E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				43A3B6932A9511DB00905D3A /* LocationCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4351C2C22AA787B000592A5E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				43A3B69B2A9520E000905D3A /* ButtonText.swift */,
+				43A3B6A62A95253500905D3A /* EditImage.swift */,
+				43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		4351C2C32AA787F700592A5E /* OnboardView */ = {
+			isa = PBXGroup;
+			children = (
+				4351C2C42AA7885200592A5E /* OnboardInfoView.swift */,
+			);
+			path = OnboardView;
+			sourceTree = "<group>";
+		};
+		4351C2C92AA78AB700592A5E /* UIKit Components */ = {
+			isa = PBXGroup;
+			children = (
+				4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */,
+			);
+			path = "UIKit Components";
 			sourceTree = "<group>";
 		};
 		43849C692A9D7EC300CFDCD2 /* ViewModel */ = {
@@ -225,14 +263,14 @@
 		43A3B6A12A95247900905D3A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				43A3B6932A9511DB00905D3A /* LocationCell.swift */,
-				43A3B69B2A9520E000905D3A /* ButtonText.swift */,
-				43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */,
 				43A3B6A22A9524D300905D3A /* LogoView.swift */,
 				43A3B6952A95121D00905D3A /* AvatarView.swift */,
-				43A3B6A62A95253500905D3A /* EditImage.swift */,
-				4304B00A2A96B3290087F7E8 /* TabProfile */,
-				4304AFFF2A96B0B40087F7E8 /* LocationDetail */,
+				4351C2C92AA78AB700592A5E /* UIKit Components */,
+				4351C2C12AA7879E00592A5E /* Cells */,
+				4351C2C22AA787B000592A5E /* Buttons */,
+				4304B00A2A96B3290087F7E8 /* TabProfileView */,
+				4304AFFF2A96B0B40087F7E8 /* LocationDetailView */,
+				4351C2C32AA787F700592A5E /* OnboardView */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -323,9 +361,11 @@
 				4304B0052A96B15F0087F7E8 /* BannerImageView.swift in Sources */,
 				4304AFFE2A96A3210087F7E8 /* MockData.swift in Sources */,
 				431407292A97E3C1005B48BF /* CKRecord+Ext.swift in Sources */,
+				4351C2C52AA7885200592A5E /* OnboardInfoView.swift in Sources */,
 				43849C6D2A9D7FA300CFDCD2 /* TabMapViewModel.swift in Sources */,
 				4304AFFC2A96A06A0087F7E8 /* UserProfile.swift in Sources */,
 				43849C6B2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift in Sources */,
+				4351C2CB2AA78B2C00592A5E /* PhotoPicker.swift in Sources */,
 				439554AC2A96B8AF0050B82B /* CloudKitManager.swift in Sources */,
 				43A098A42A9017D800B0942A /* AppTabView.swift in Sources */,
 				4304B0092A96B1AF0087F7E8 /* DescriptionView.swift in Sources */,

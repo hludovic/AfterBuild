@@ -12,7 +12,7 @@ struct FirstNameAvatarView: View {
 
     var body: some View {
         VStack {
-            AvatarView(size: 65)
+            AvatarView(size: 65, image: PlaceholderImage.avatar)
             Text(firstName)
                 .fontWeight(.bold)
                 .lineLimit(1)
