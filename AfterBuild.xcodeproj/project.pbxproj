@@ -42,6 +42,7 @@
 		43A3B6A52A95251200905D3A /* RoudedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A42A95251200905D3A /* RoudedBackground.swift */; };
 		43A3B6A72A95253500905D3A /* EditImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A62A95253500905D3A /* EditImage.swift */; };
 		43A3B6A92A95254A00905D3A /* CharactersRemainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */; };
+		43F4EA782AA6EC12003FFBA2 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		43A3B6A42A95251200905D3A /* RoudedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoudedBackground.swift; sourceTree = "<group>"; };
 		43A3B6A62A95253500905D3A /* EditImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImage.swift; sourceTree = "<group>"; };
 		43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRemainView.swift; sourceTree = "<group>"; };
+		43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			children = (
 				43A3B6932A9511DB00905D3A /* LocationCell.swift */,
 				43A3B69B2A9520E000905D3A /* ButtonText.swift */,
+				43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */,
 				43A3B6A22A9524D300905D3A /* LogoView.swift */,
 				43A3B6952A95121D00905D3A /* AvatarView.swift */,
 				43A3B6A62A95253500905D3A /* EditImage.swift */,
@@ -326,6 +329,7 @@
 				439554AC2A96B8AF0050B82B /* CloudKitManager.swift in Sources */,
 				43A098A42A9017D800B0942A /* AppTabView.swift in Sources */,
 				4304B0092A96B1AF0087F7E8 /* DescriptionView.swift in Sources */,
+				43F4EA782AA6EC12003FFBA2 /* DismissButton.swift in Sources */,
 				4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */,
 				43A3B69A2A951F0800905D3A /* View+Ext.swift in Sources */,
 				43A3B6A72A95253500905D3A /* EditImage.swift in Sources */,

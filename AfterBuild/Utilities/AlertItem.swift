@@ -30,7 +30,7 @@ struct AlertContext {
         message: Text("AfterBuild does not have permition to access your location. Check your phone settings"),
         dismissButton: .default(Text("Ok")))
     
-    static let locationDisebled = AlertItem(
+    static let locationDisabled = AlertItem(
         title: Text("Location Service Disabled"),
         message: Text("Your phone location services are disebled. To change that go on your phone privacy settings"),
         dismissButton: .default(Text("Ok")))

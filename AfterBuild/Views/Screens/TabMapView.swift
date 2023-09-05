@@ -20,16 +20,24 @@ struct TabMapView: View {
             .ignoresSafeArea()
             .tint(.afterBuildRed)
             VStack {
-                LogoView().shadow(radius: 10)
+                LogoView(frameWidth: 125).shadow(radius: 10)
                 Spacer()
             }
         }
         .onAppear{
-            viewModel.checkIfLocationServicesEnabled()
+            viewModel.runStartumCheck()
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
             }
         }
+        .sheet(
+            isPresented: $viewModel.isShowingOnboardView,
+            onDismiss: { viewModel.startLocationService() },
+            content: {
+                OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
+                    .presentationDragIndicator(.visible)
+            }
+        )
         .toolbarBackground(.visible, for: .tabBar)
         .alert(item: $viewModel.alertItem) { item in
             Alert(title: item.title, message: item.message, dismissButton: item.dismissButton)

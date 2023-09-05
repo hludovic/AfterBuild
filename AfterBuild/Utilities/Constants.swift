@@ -26,6 +26,10 @@ enum ImageDimention {
     }
 }
 
+enum StorageKey {
+    static let hasSeenOnboardView = "HasSeenOnboardView"
+}
+
 extension SpotLocation {
     static let kName = "name"
     static let kAddress = "address"
