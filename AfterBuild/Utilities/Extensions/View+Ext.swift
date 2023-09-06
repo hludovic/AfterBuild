@@ -13,3 +13,11 @@ extension View {
     }
 }
 
+extension View {
+    @ViewBuilder func alertMessage(item: AlertItem?, isPresented: Binding<Bool>) -> some View {
+        if let item {
+            self.alert(item.title, isPresented: isPresented) {
+            } message: { item.message }
+        } else { self }
+    }
+}

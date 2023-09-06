@@ -9,7 +9,12 @@ import MapKit
 
 final class TabMapViewModel: NSObject, ObservableObject {
     @Published var isShowingOnboardView: Bool = false
-    @Published var alertItem: AlertItem?
+    @Published var isShowingAlert: Bool = false
+    @Published var alertItem: AlertItem? {
+        didSet {
+            isShowingAlert = true
+        }
+    }
     @Published var coordonateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D( latitude: 37.331516, longitude: -121.891054),
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
