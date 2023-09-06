@@ -42,12 +42,19 @@ struct TabProfileView: View {
                     VStack(spacing: 1) {
                         TextField("First Name", text: $firstName)
                             .focused($focusedField, equals: .firstName)
+                            .textContentType(.givenName)
+                            .submitLabel(.next)
                             .profileNameStyle()
                         TextField("Last Name", text: $lastName)
                             .focused($focusedField, equals: .lastName)
+                            .submitLabel(.next)
+                            .textContentType(.familyName)
+                            .submitLabel(.next)
                             .profileNameStyle()
                         TextField("Company Name", text: $companyName)
                             .focused($focusedField, equals: .companyName)
+                            .textContentType(.organizationName)
+                            .submitLabel(.next)
                     }
                 }
             }
@@ -85,6 +92,18 @@ struct TabProfileView: View {
                 }
             }
         }
+        .onSubmit {
+            switch focusedField {
+            case .firstName:
+                focusedField = .lastName
+            case .lastName:
+                focusedField = .companyName
+            case .companyName:
+                focusedField = .bio
+            default:
+                focusedField = .firstName
+            }
+        }
     }
 
     func createProfile() {
@@ -97,10 +116,9 @@ struct TabProfileView: View {
         guard !firstName.isEmpty,
               !lastName.isEmpty,
               !companyName.isEmpty,
-              bio.isEmpty,
-              bio.count > 100,
-              avatar != PlaceholderImage.avatar else {
-            return false }
+              !bio.isEmpty,
+              bio.count < 100,
+              avatar != PlaceholderImage.avatar else { return false }
         return true
     }
 
