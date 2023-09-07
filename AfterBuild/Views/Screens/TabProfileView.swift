@@ -69,10 +69,11 @@ struct TabProfileView: View {
             Button(action: {
                 Task {
                     do {
-                        try await createProfile()
+//                        try await createProfile()
+                        try await getProfile()
 
                     } catch {
-                        print("error")
+                        print(error.localizedDescription)
                     }
 
                 }
@@ -135,6 +136,24 @@ struct TabProfileView: View {
         let result = saveResults.compactMap { (recordID, result) in try? result.get() }
 
         print(result)
+    }
+
+    func getProfile() async throws {
+        let container = CKContainer.default()
+
+        let userID = try await container.userRecordID()
+        let userRecord = try await container.publicCloudDatabase.record(for: userID)
+        let profileReferance = userRecord["userProfile"] as! CKRecord.Reference
+
+        let profileRecord = try await container.publicCloudDatabase.record(for: profileReferance.recordID)
+
+        let profile = UserProfile(record: profileRecord)
+        firstName = profile.firstName
+        lastName = profile.lastName
+        companyName = profile.compagnyName
+        bio = profile.bio
+        avatar = profile.avatar.convertToUiimage(for: .square)
+
     }
 
 
