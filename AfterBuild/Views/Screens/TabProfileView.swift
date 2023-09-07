@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct TabProfileView: View {
     enum Field {
@@ -22,9 +23,7 @@ struct TabProfileView: View {
     @State private var avatar: UIImage = PlaceholderImage.avatar
     @State private var isShowingPhotoPicker: Bool = false
     @State private var isShowingAlert: Bool = false
-    @State private var alertItem: AlertItem? {
-        didSet { isShowingAlert = true }
-    }
+    @State private var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -68,7 +67,15 @@ struct TabProfileView: View {
             }
             Spacer()
             Button(action: {
-                createProfile()
+                Task {
+                    do {
+                        try await createProfile()
+
+                    } catch {
+                        print("error")
+                    }
+
+                }
             }) {
                 ButtonText(title: "Create Profile")
             }
@@ -106,9 +113,28 @@ struct TabProfileView: View {
         }
     }
 
-    func createProfile() {
+    func createProfile() async throws {
+        let container = CKContainer.default()
         guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
-        // Upload the profil
+
+        let profileRecord = CKRecord(recordType: RecordType.profile)
+        profileRecord[UserProfile.kFirstName] = firstName
+        profileRecord[UserProfile.kLastName] = lastName
+        profileRecord[UserProfile.kCompagnyName] = companyName
+        profileRecord[UserProfile.kBio] = bio
+        profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
+
+        let recordID = try await container.userRecordID()
+
+        let userRecord = try await container.publicCloudDatabase.record(for: recordID)
+
+        userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
+
+        let (saveResults, _) = try await container.publicCloudDatabase.modifyRecords(saving: [userRecord, profileRecord], deleting: [])
+
+        let result = saveResults.compactMap { (recordID, result) in try? result.get() }
+
+        print(result)
     }
 
 
