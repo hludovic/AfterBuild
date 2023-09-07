@@ -20,6 +20,7 @@
 		4351C2C52AA7885200592A5E /* OnboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2C42AA7885200592A5E /* OnboardInfoView.swift */; };
 		4351C2CB2AA78B2C00592A5E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */; };
 		4351C2CD2AA7F68800592A5E /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CC2AA7F68800592A5E /* UIImage+Ext.swift */; };
+		4351C2D22AA97DD200592A5E /* TabProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2D12AA97DD200592A5E /* TabProfileViewModel.swift */; };
 		436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D186C2A91553C00E43BD1 /* LocationDetailView.swift */; };
 		43849C682A9D50A400CFDCD2 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C672A9D50A400CFDCD2 /* AlertItem.swift */; };
 		43849C6B2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */; };
@@ -62,6 +63,7 @@
 		4351C2C42AA7885200592A5E /* OnboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardInfoView.swift; sourceTree = "<group>"; };
 		4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		4351C2CC2AA7F68800592A5E /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		4351C2D12AA97DD200592A5E /* TabProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabProfileViewModel.swift; sourceTree = "<group>"; };
 		436D186C2A91553C00E43BD1 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		43849C672A9D50A400CFDCD2 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLocationsViewModel.swift; sourceTree = "<group>"; };
@@ -167,13 +169,31 @@
 			path = "UIKit Components";
 			sourceTree = "<group>";
 		};
-		43849C692A9D7EC300CFDCD2 /* ViewModel */ = {
+		4351C2CE2AA97D5700592A5E /* TabMapView */ = {
 			isa = PBXGroup;
 			children = (
-				43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */,
+				43A098A52A90184900B0942A /* TabMapView.swift */,
 				43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */,
 			);
-			path = ViewModel;
+			path = TabMapView;
+			sourceTree = "<group>";
+		};
+		4351C2CF2AA97D8500592A5E /* TabLocationsView */ = {
+			isa = PBXGroup;
+			children = (
+				43A098A72A90189B00B0942A /* TabLocationsView.swift */,
+				43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */,
+			);
+			path = TabLocationsView;
+			sourceTree = "<group>";
+		};
+		4351C2D02AA97DC100592A5E /* TabProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				43A098A92A9018BC00B0942A /* TabProfileView.swift */,
+				4351C2D12AA97DD200592A5E /* TabProfileViewModel.swift */,
+			);
+			path = TabProfileView;
 			sourceTree = "<group>";
 		};
 		439554AA2A96B87E0050B82B /* Utilities */ = {
@@ -212,7 +232,6 @@
 				43A098942A90105D00B0942A /* Assets.xcassets */,
 				4304AFF82A9699B20087F7E8 /* Model */,
 				439554AA2A96B87E0050B82B /* Utilities */,
-				43849C692A9D7EC300CFDCD2 /* ViewModel */,
 				43A3B69E2A9523A500905D3A /* Views */,
 				43A098962A90105D00B0942A /* Preview Content */,
 			);
@@ -254,10 +273,10 @@
 			isa = PBXGroup;
 			children = (
 				43A098A32A9017D800B0942A /* AppTabView.swift */,
-				43A098A52A90184900B0942A /* TabMapView.swift */,
-				43A098A72A90189B00B0942A /* TabLocationsView.swift */,
-				43A098A92A9018BC00B0942A /* TabProfileView.swift */,
+				4351C2D02AA97DC100592A5E /* TabProfileView */,
 				436D186C2A91553C00E43BD1 /* LocationDetailView.swift */,
+				4351C2CF2AA97D8500592A5E /* TabLocationsView */,
+				4351C2CE2AA97D5700592A5E /* TabMapView */,
 				43875CB52AA45BC7000A7519 /* OnboardView.swift */,
 			);
 			path = Screens;
@@ -360,6 +379,7 @@
 				43A3B69C2A9520E000905D3A /* ButtonText.swift in Sources */,
 				436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */,
 				43A098A82A90189B00B0942A /* TabLocationsView.swift in Sources */,
+				4351C2D22AA97DD200592A5E /* TabProfileViewModel.swift in Sources */,
 				4304B0032A96B10A0087F7E8 /* FirstNameAvatarView.swift in Sources */,
 				4304B0052A96B15F0087F7E8 /* BannerImageView.swift in Sources */,
 				4304AFFE2A96A3210087F7E8 /* MockData.swift in Sources */,
