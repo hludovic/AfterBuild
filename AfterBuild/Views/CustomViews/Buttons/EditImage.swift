@@ -19,6 +19,7 @@ struct EditImage: View {
                 .scaledToFit()
                 .frame(height: 24)
                 .foregroundColor(.brandPrimary)
+                .opacity(0.7)
         }
         .offset(x: 32, y: 24)
 
