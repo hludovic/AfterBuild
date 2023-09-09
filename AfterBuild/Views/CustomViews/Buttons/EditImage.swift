@@ -9,12 +9,19 @@ import SwiftUI
 
 struct EditImage: View {
     var body: some View {
-        Image(systemName: "square.and.pencil")
-            .resizable()
-            .scaledToFit()
-            .frame(height: 14)
-            .foregroundColor(.white)
-            .offset(x: 0, y: 32)
+        ZStack {
+            Circle()
+                .foregroundColor(.white)
+                .frame(width: 28, height: 28)
+                .opacity(0.7)
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 24)
+                .foregroundColor(.brandPrimary)
+        }
+        .offset(x: 32, y: 24)
+
     }
 }
 
