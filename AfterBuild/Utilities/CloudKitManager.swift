@@ -20,7 +20,6 @@ class CloudKitManager {
         let sortDescriptor = NSSortDescriptor(key: SpotLocation.kName, ascending: true)
         let query = CKQuery(recordType: RecordType.location, predicate: NSPredicate(value: true))
         query.sortDescriptors = [sortDescriptor]
- 
         let (matching, _) = try await container.publicCloudDatabase.records(matching: query)
         let records = matching.compactMap { _, result in try? result.get() }
         return records.map(SpotLocation.init)
@@ -30,9 +29,21 @@ class CloudKitManager {
         let recordID = try await container.userRecordID()
         let record = try await container.publicCloudDatabase.record(for: recordID)
         userRecord = record
-
         if let profileReferance = record["userProfile"] as? CKRecord.Reference {
             profileRecordID = profileReferance.recordID
         }
+    }
+
+    func save(records: [CKRecord]) async throws -> [CKRecord] {
+        let (saveResults, _) = try await container.publicCloudDatabase.modifyRecords(saving: records, deleting: [])
+        return saveResults.compactMap { (_ , result) in try? result.get() }
+    }
+
+    func save(record: CKRecord) async throws -> CKRecord {
+        try await container.publicCloudDatabase.save(record)
+    }
+
+    func fetchRecord(with id: CKRecord.ID) async throws -> CKRecord {
+        return try await container.publicCloudDatabase.record(for: id)
     }
 }

@@ -25,6 +25,9 @@ struct AppTabView: View {
                     Label("Profile", systemImage: "person")
                 }
         }
+        .task {
+            try? await CloudKitManager.shared.getUserRecord()
+        }
         .tint(.brandPrimary)
     }
 }

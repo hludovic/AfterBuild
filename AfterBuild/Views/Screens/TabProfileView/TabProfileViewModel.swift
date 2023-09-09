@@ -18,13 +18,20 @@ final class TabProfileViewModel: ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
 
-
-    func getProfile() async throws {
-        let container = CKContainer.default()
-        let userID = try await container.userRecordID()
-        let userRecord = try await container.publicCloudDatabase.record(for: userID)
-        let profileReferance = userRecord["userProfile"] as! CKRecord.Reference
-        let profileRecord = try await container.publicCloudDatabase.record(for: profileReferance.recordID)
+    func getProfile() async {
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            return print("ERROR")
+        }
+        guard let profileReferance = userRecord["userProfile"] as? CKRecord.Reference else {
+            return print("ERROR")
+        }
+        var profileRecord: CKRecord? = nil
+        do {
+            profileRecord = try await CloudKitManager.shared.fetchRecord(with: profileReferance.recordID)
+        } catch {
+            print("ERROR")
+        }
+        guard let profileRecord else { return }
         let profile = UserProfile(record: profileRecord)
         await MainActor.run {
             firstName = profile.firstName
@@ -35,21 +42,23 @@ final class TabProfileViewModel: ObservableObject {
         }
     }
 
-    func createProfile() async throws {
-        let container = CKContainer.default()
+    func createProfile() async {
         guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            return print("ERROR")
+        }
         let profileRecord = CKRecord(recordType: RecordType.profile)
         profileRecord[UserProfile.kFirstName] = firstName
         profileRecord[UserProfile.kLastName] = lastName
         profileRecord[UserProfile.kCompagnyName] = companyName
         profileRecord[UserProfile.kBio] = bio
         profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
-        let recordID = try await container.userRecordID()
-        let userRecord = try await container.publicCloudDatabase.record(for: recordID)
         userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
-        let (saveResults, _) = try await container.publicCloudDatabase.modifyRecords(saving: [userRecord, profileRecord], deleting: [])
-        let result = saveResults.compactMap { (recordID, result) in try? result.get() }
-        print(result)
+        do {
+            _ = try await CloudKitManager.shared.save(records: [userRecord, profileRecord])
+        } catch {
+            print("ERROR")
+        }
     }
 
     private func isValidProfile() -> Bool {
@@ -57,7 +66,7 @@ final class TabProfileViewModel: ObservableObject {
               !lastName.isEmpty,
               !companyName.isEmpty,
               !bio.isEmpty,
-              bio.count < 100,
+              bio.count <= 100,
               avatar != PlaceholderImage.avatar else { return false }
         return true
     }

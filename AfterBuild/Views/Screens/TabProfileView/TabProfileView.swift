@@ -59,18 +59,9 @@ struct TabProfileView: View {
                     .lineLimit(4...6)
             }
             Spacer()
-            Button(action: {
-                Task {
-                    do {
-//                        try await createProfile()
-                        try await viewModel.getProfile()
-
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-
-                }
-            }) {
+            Button {
+                Task { await viewModel.getProfile() }
+            } label: {
                 ButtonText(title: "Create Profile")
             }
             .padding(.bottom)
