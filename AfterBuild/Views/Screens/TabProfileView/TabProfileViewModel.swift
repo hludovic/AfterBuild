@@ -16,20 +16,22 @@ final class TabProfileViewModel: ObservableObject {
     @Published var avatar: UIImage = PlaceholderImage.avatar
     @Published var isShowingPhotoPicker: Bool = false
     @Published var isShowingAlert: Bool = false
+    @Published var isLoading: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
 
     func getProfile() async {
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            return print("ERROR")
+            return await MainActor.run { alertItem = AlertContext.noUserRecord }
         }
-        guard let profileReferance = userRecord["userProfile"] as? CKRecord.Reference else {
-            return print("ERROR")
-        }
+        guard let profileReferance = userRecord["userProfile"] as? CKRecord.Reference else { return }
+        await showLoadingView()
         var profileRecord: CKRecord? = nil
         do {
             profileRecord = try await CloudKitManager.shared.fetchRecord(with: profileReferance.recordID)
+            await hideLoadingView()
         } catch {
-            print("ERROR")
+            await hideLoadingView()
+            return await MainActor.run { alertItem = AlertContext.getProfileFailure }
         }
         guard let profileRecord else { return }
         let profile = UserProfile(record: profileRecord)
@@ -45,7 +47,7 @@ final class TabProfileViewModel: ObservableObject {
     func createProfile() async {
         guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            return print("ERROR")
+            return await MainActor.run { alertItem = AlertContext.noUserRecord }
         }
         let profileRecord = CKRecord(recordType: RecordType.profile)
         profileRecord[UserProfile.kFirstName] = firstName
@@ -54,10 +56,14 @@ final class TabProfileViewModel: ObservableObject {
         profileRecord[UserProfile.kBio] = bio
         profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
         userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
+        await showLoadingView()
         do {
             _ = try await CloudKitManager.shared.save(records: [userRecord, profileRecord])
+            await hideLoadingView()
+            await MainActor.run { alertItem = AlertContext.createProfileSuccess }
         } catch {
-            print("ERROR")
+            await hideLoadingView()
+            await MainActor.run { alertItem = AlertContext.createProfileFailure }
         }
     }
 
@@ -70,4 +76,6 @@ final class TabProfileViewModel: ObservableObject {
               avatar != PlaceholderImage.avatar else { return false }
         return true
     }
+    @MainActor private func showLoadingView() { isLoading = true}
+    @MainActor private func hideLoadingView() { isLoading = false}
 }

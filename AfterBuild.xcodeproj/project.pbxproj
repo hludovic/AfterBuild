@@ -46,6 +46,7 @@
 		43A3B6A52A95251200905D3A /* RoudedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A42A95251200905D3A /* RoudedBackground.swift */; };
 		43A3B6A72A95253500905D3A /* EditImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A62A95253500905D3A /* EditImage.swift */; };
 		43A3B6A92A95254A00905D3A /* CharactersRemainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */; };
+		43ACC19F2AAC0D300016DEBD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACC19E2AAC0D300016DEBD /* LoadingView.swift */; };
 		43F4EA782AA6EC12003FFBA2 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		43A3B6A42A95251200905D3A /* RoudedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoudedBackground.swift; sourceTree = "<group>"; };
 		43A3B6A62A95253500905D3A /* EditImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImage.swift; sourceTree = "<group>"; };
 		43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRemainView.swift; sourceTree = "<group>"; };
+		43ACC19E2AAC0D300016DEBD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,6 +289,7 @@
 			children = (
 				43A3B6A22A9524D300905D3A /* LogoView.swift */,
 				43A3B6952A95121D00905D3A /* AvatarView.swift */,
+				43ACC19E2AAC0D300016DEBD /* LoadingView.swift */,
 				4351C2C92AA78AB700592A5E /* UIKit Components */,
 				4351C2C12AA7879E00592A5E /* Cells */,
 				4351C2C22AA787B000592A5E /* Buttons */,
@@ -378,6 +381,7 @@
 				439554AE2A96CEB70050B82B /* Constants.swift in Sources */,
 				43A3B69C2A9520E000905D3A /* ButtonText.swift in Sources */,
 				436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */,
+				43ACC19F2AAC0D300016DEBD /* LoadingView.swift in Sources */,
 				43A098A82A90189B00B0942A /* TabLocationsView.swift in Sources */,
 				4351C2D22AA97DD200592A5E /* TabProfileViewModel.swift in Sources */,
 				4304B0032A96B10A0087F7E8 /* FirstNameAvatarView.swift in Sources */,
