@@ -26,6 +26,15 @@ struct AlertContext {
         title: Text("Location Denied"),
         message: Text("AfterBuild does not have permition to access your location. Check your phone settings."))
 
+//    static let locationDisabled = AlertItem(
+//        title: Text("Location Service Disabled"),
+//        message: Text("Your phone location services are disebled. To change that go on your phone privacy settings"))
+
+    // MARK - TabProfile Errors
+    static let invalidProfile = AlertItem(
+        title: Text("Invalid Profile"),
+        message: Text("All fields are required as well ass profile photo. Your bio must be < 100 characters.\nPlease try again."))
+
     static let noUserRecord = AlertItem(
         title: Text("No User Record"),
         message: Text("You must log into iCloud on your phone in order to utilize AfterBuild's Profile. Please log in your settings screen."))
@@ -42,13 +51,13 @@ struct AlertContext {
         title: Text("Unable to Retrive Profile"),
         message: Text("We were unable to retrive your profile at this time.\nPlease try again later or contact customer support if this persist."))
 
-//    static let locationDisabled = AlertItem(
-//        title: Text("Location Service Disabled"),
-//        message: Text("Your phone location services are disebled. To change that go on your phone privacy settings"))
+    static let updateProfileSuccess = AlertItem(
+        title: Text("Profile Update Success"),
+        message: Text("Your AfterBuild Profile was updated successfully."))
 
-    // MARK - TabProfile Errors
-    static let invalidProfile = AlertItem(
-        title: Text("Invalid Profile"),
-        message: Text("All fields are required as well ass profile photo. Your bio must be < 100 characters.\nPlease try again."))
+    static let updateProfileFailure = AlertItem(
+        title: Text("Profile Update Failed"),
+        message: Text("We were unable to update your profile at this time.\nPlease try again later."))
+
 
 }

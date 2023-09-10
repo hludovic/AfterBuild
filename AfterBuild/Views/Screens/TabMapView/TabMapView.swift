@@ -40,9 +40,6 @@ struct TabMapView: View {
         )
         .toolbarBackground(.visible, for: .tabBar)
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
-//        .alert(item: $viewModel.alertItem) { item in
-//            Alert(title: item.title, message: item.message, dismissButton: item.dismissButton)
-//        }
     }
 }
 

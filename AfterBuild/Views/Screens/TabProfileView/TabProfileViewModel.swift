@@ -8,7 +8,9 @@
 import CloudKit
 import SwiftUI
 
+
 final class TabProfileViewModel: ObservableObject {
+    enum Context { case update, create }
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var companyName: String = ""
@@ -18,6 +20,11 @@ final class TabProfileViewModel: ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var isLoading: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
+
+    private var existingProfileRecord: CKRecord? {
+        didSet { profileContext = .update }
+    }
+    var profileContext: Context = .create
 
     func getProfile() async {
         guard let userRecord = CloudKitManager.shared.userRecord else {
@@ -34,6 +41,7 @@ final class TabProfileViewModel: ObservableObject {
             return await MainActor.run { alertItem = AlertContext.getProfileFailure }
         }
         guard let profileRecord else { return }
+        existingProfileRecord = profileRecord
         let profile = UserProfile(record: profileRecord)
         await MainActor.run {
             firstName = profile.firstName
@@ -42,6 +50,26 @@ final class TabProfileViewModel: ObservableObject {
             bio = profile.bio
             avatar = profile.avatar.convertToUiimage(for: .square)
         }
+    }
+
+    func updateProfile() async {
+        guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
+        guard let profileRecord = existingProfileRecord else { return alertItem = AlertContext.getProfileFailure }
+        profileRecord[UserProfile.kFirstName] = firstName
+        profileRecord[UserProfile.kLastName] = lastName
+        profileRecord[UserProfile.kCompagnyName] = companyName
+        profileRecord[UserProfile.kBio] = bio
+        profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
+        await showLoadingView()
+        do {
+            existingProfileRecord = try await CloudKitManager.shared.save(record: profileRecord)
+            await hideLoadingView()
+            await MainActor.run { alertItem = AlertContext.updateProfileSuccess }
+        } catch {
+            await hideLoadingView()
+            await MainActor.run { alertItem = AlertContext.updateProfileFailure }
+        }
+
     }
 
     func createProfile() async {
@@ -58,7 +86,10 @@ final class TabProfileViewModel: ObservableObject {
         userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
         await showLoadingView()
         do {
-            _ = try await CloudKitManager.shared.save(records: [userRecord, profileRecord])
+            let records = try await CloudKitManager.shared.save(records: [userRecord, profileRecord])
+            for record in records where record.recordType == RecordType.profile {
+                existingProfileRecord = record
+            }
             await hideLoadingView()
             await MainActor.run { alertItem = AlertContext.createProfileSuccess }
         } catch {

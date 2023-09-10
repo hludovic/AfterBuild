@@ -61,9 +61,13 @@ struct TabProfileView: View {
                 }
                 Spacer()
                 Button {
-                    Task { await viewModel.createProfile() }
+                    Task {
+                        viewModel.profileContext == .create
+                        ? await viewModel.createProfile()
+                        : await viewModel.updateProfile()
+                    }
                 } label: {
-                    ButtonText(title: "Create Profile")
+                    ButtonText(title: viewModel.profileContext == .create ? "Create Profile" : "Update Profile")
                 }
                 .padding(.bottom)
                 .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
