@@ -70,9 +70,8 @@ struct TabProfileView: View {
                     ButtonText(title: viewModel.profileContext == .create ? "Create Profile" : "Update Profile")
                 }
                 .padding(.bottom)
-                .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
-
             }
+            .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
             if viewModel.isLoading { LoadingView() }
         }
         .task {

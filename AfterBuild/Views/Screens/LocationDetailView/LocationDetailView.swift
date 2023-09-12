@@ -8,22 +8,18 @@
 import SwiftUI
 
 struct LocationDetailView: View {
-    let columns = [GridItem(.flexible()),
-                   GridItem(.flexible()),
-                   GridItem(.flexible())]
-
-    var location: SpotLocation
+    @ObservedObject var viewModel: LocationDetailViewModel
     
     var body: some View {
         VStack(spacing: 17) {
-            BannerImageView(image: location.createBannerImage())
+            BannerImageView(image: viewModel.location.createBannerImage())
             HStack {
-                AddressView(address: location.address)
+                AddressView(address: viewModel.location.address)
                 Spacer()
             }
             .padding(.horizontal)
 
-            DescriptionView(description: location.description)
+            DescriptionView(description: viewModel.location.description)
             
             ZStack {
                 Capsule()
@@ -31,15 +27,15 @@ struct LocationDetailView: View {
                     .foregroundColor(Color(uiColor: .secondarySystemBackground))
                 HStack(spacing: 20) {
                     Button {
-                        print("action")
+                        viewModel.getDirectionsToLocation()
                     } label: {
                         LocationActionButton(color: .brandPrimary, imageName: "location.fill")
                     }
-                    Link(destination: URL(string: location.websiteURL)!) {
+                    Link(destination: URL(string: viewModel.location.websiteURL)!) {
                         LocationActionButton(color: .brandPrimary, imageName: "network")
                     }
                     Button {
-                        print("action")
+                        viewModel.callLocation()
                     } label: {
                         LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                     }
@@ -57,7 +53,7 @@ struct LocationDetailView: View {
                 .font(.title2)
             
             ScrollView {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: viewModel.columns) {
                     FirstNameAvatarView(firstName: "Pierre")
                     FirstNameAvatarView(firstName: "Paul")
                     FirstNameAvatarView(firstName: "Jack")
@@ -68,15 +64,17 @@ struct LocationDetailView: View {
                 }
             }
         }
-        .navigationTitle(location.name)
+        .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
+        .navigationTitle(viewModel.location.name)
         Spacer()
     }
 }
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
+        let location = SpotLocation(record: MockData.location)
         NavigationStack {
-            LocationDetailView(location: SpotLocation(record: MockData.location))
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
         }
     }
 }

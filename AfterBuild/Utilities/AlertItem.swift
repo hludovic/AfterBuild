@@ -59,5 +59,11 @@ struct AlertContext {
         title: Text("Profile Update Failed"),
         message: Text("We were unable to update your profile at this time.\nPlease try again later."))
 
+    // MARK - LocationDetail Errors
+    static let wrongPhoneNumber = AlertItem(
+        title: Text("Invalid Phone Number"),
+        message: Text("The phone number for the location is invalid. Please look up the phone number yourself."))
+
+
 
 }
