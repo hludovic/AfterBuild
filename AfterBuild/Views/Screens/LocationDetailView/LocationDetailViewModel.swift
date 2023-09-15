@@ -13,6 +13,7 @@ final class LocationDetailViewModel: ObservableObject {
         didSet { isShowingAlert = true }
     }
     @Published var isShowingAlert: Bool = false
+    @Published var isShowingProfileModal: Bool = false
 
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 

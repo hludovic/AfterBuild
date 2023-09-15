@@ -14,45 +14,48 @@ struct TabMapView: View {
     @StateObject var viewModel = TabMapViewModel()
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Map {
-                ForEach(locationManager.locations) { location in
+        ZStack(alignment: .bottom) {
+            Map(position: $viewModel.position) {
+                ForEach(locationManager.locations, id: \.id) { location in
                     Marker(location.name, coordinate: location.location.coordinate)
                         .tint(.brandPrimary)
-                    UserAnnotation()
                 }
+                UserAnnotation()
             }
-            .mapControls {
-                MapPitchToggle()
-                MapUserLocationButton()
-            }
-//            Map(coordinateRegion: $viewModel.coordonateRegion,
-//                showsUserLocation: true,
-//                annotationItems: locationManager.locations) { location in
-//                MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
+//            .mapControls {
+//                MapPitchToggle()
+//                MapUserLocationButton()
+//                MapCompass()
 //            }
-//            .ignoresSafeArea()
-            .tint(.afterBuildRed)
 
-            LogoView(frameWidth: 125).shadow(radius: 10)
+            HStack {
+                LocationButton(.currentLocation) {
+                    viewModel.requestAllowOnceLocationPermission()
+                }
+                .foregroundStyle(.white)
+                .symbolVariant(.fill)
+                .labelStyle(.iconOnly)
+                .tint(.afterBuildRed)
+                .clipShape(Capsule())
+                .padding()
 
+                Button {
+                    viewModel.position = .automatic
+                } label: {
+                    Image(systemName: "fork.knife.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundStyle(Color.afterBuildRed)
+                        .foregroundStyle(.brandPrimary)
+                }
+                Spacer()
+            }
         }
         .onAppear {
             viewModel.checkIfHasSeenOnboard()
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
             }
-        }
-        .overlay(alignment: .bottomLeading) {
-            LocationButton(.currentLocation) {
-                viewModel.requestAllowOnceLocationPermission()
-            }
-            .foregroundStyle(.white)
-            .symbolVariant(.fill)
-            .tint(.afterBuildRed)
-            .labelStyle(.iconOnly)
-            .clipShape(Circle())
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 40, trailing: 0))
         }
         .sheet(
             isPresented: $viewModel.isShowingOnboardView,
@@ -66,9 +69,7 @@ struct TabMapView: View {
     }
 }
 
-struct TabMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabMapView()
-            .environmentObject(LocationManager())
-    }
+#Preview {
+    TabMapView()
+        .environmentObject(LocationManager())
 }

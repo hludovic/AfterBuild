@@ -5,7 +5,7 @@
 //  Created by Ludovic HENRY on 28/08/2023.
 //
 
-import MapKit
+import _MapKit_SwiftUI
 
 final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isShowingOnboardView: Bool = false
@@ -13,10 +13,8 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     @Published var alertItem: AlertItem? {
         didSet { isShowingAlert = true }
     }
-    @Published var coordonateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D( latitude: 37.331516, longitude: -121.891054),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
+    @Published var position: MapCameraPosition = .automatic
+
     var deviceLocationManager: CLLocationManager = CLLocationManager()
     var hasSeenOnboardView: Bool {
         return UserDefaults.standard.bool(forKey: StorageKey.hasSeenOnboardView)
@@ -36,39 +34,11 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
             isShowingOnboardView = true
             UserDefaults.standard.setValue(true, forKey: StorageKey.hasSeenOnboardView)
         }
-//        } else {
-//            startLocationService()
-//        }
     }
 
-//    func startLocationService() {
-////        if CLLocationManager.locationServicesEnabled() {
-//            self.deviceLocationManager = CLLocationManager()
-//            self.deviceLocationManager!.delegate = self
-////        } else {
-////            self.alertItem = AlertContext.locationDisabled
-////        }
-//    }
-
-//    private func checkLocationAuthorisation() {
-//        guard let deviceLocationManager else { return }
-//        switch deviceLocationManager.authorizationStatus {
-//        case .notDetermined:
-//            deviceLocationManager.requestWhenInUseAuthorization()
-//        case .restricted:
-//            alertItem = AlertContext.locationRestricted
-//        case .denied:
-//            alertItem = AlertContext.locationDenied
-//        case .authorizedAlways, .authorizedWhenInUse:
-//            break
-//        @unknown default:
-//            break
-//        }
-//    }
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.last else { return }
-        
+//        guard let currentLocation = locations.last else { return }
+        position = .userLocation(followsHeading: true, fallback: .automatic)
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -86,10 +56,3 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
         }
     }
 }
-//
-//extension TabMapViewModel: CLLocationManagerDelegate {
-//    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-//        // This function is called when CLLocationManager is instancied
-//        checkLocationAuthorisation()
-//    }
-//}

@@ -33,11 +33,11 @@ struct SpotLocation: Identifiable {
 
     func createSquareImage() -> UIImage {
         guard let squareAsset else { return PlaceholderImage.square }
-        return squareAsset.convertToUiimage(for: .square)
+        return squareAsset.convertToUIimage(in: .square)
     }
 
     func createBannerImage() -> UIImage {
         guard let bannerAsset else { return PlaceholderImage.banner }
-        return bannerAsset.convertToUiimage(for: .banner)
+        return bannerAsset.convertToUIimage(in: .banner)
     }
 }

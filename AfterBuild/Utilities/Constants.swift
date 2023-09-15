@@ -18,10 +18,10 @@ enum PlaceholderImage {
     static let banner = UIImage(resource: .defaultBannerAsset)
 }
 
-enum ImageDimention {
+enum ImageDimension {
     case square, banner
 
-    static func getPlaceholder(for dimention: ImageDimention) -> UIImage {
+    static func getPlaceholder(for dimention: ImageDimension) -> UIImage {
         return dimention == .square ? PlaceholderImage.square : PlaceholderImage.banner
     }
 }

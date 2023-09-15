@@ -48,7 +48,7 @@ final class TabProfileViewModel: ObservableObject {
             lastName = profile.lastName
             companyName = profile.compagnyName
             bio = profile.bio
-            avatar = profile.avatar.convertToUiimage(for: .square)
+            avatar = profile.getAvatar()
         }
     }
 

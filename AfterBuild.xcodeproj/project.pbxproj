@@ -18,7 +18,6 @@
 		430EC39D2AB1632F00B90508 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430EC39C2AB1632F00B90508 /* ProfileModalView.swift */; };
 		431407292A97E3C1005B48BF /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431407282A97E3C1005B48BF /* CKRecord+Ext.swift */; };
 		431C6DF12AAFF52E006ECCED /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C6DF02AAFF52E006ECCED /* LocationDetailViewModel.swift */; };
-		43406FA32AB298E9002E94C9 /* TestMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43406FA22AB298E9002E94C9 /* TestMapView.swift */; };
 		4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */; };
 		4351C2C52AA7885200592A5E /* OnboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2C42AA7885200592A5E /* OnboardInfoView.swift */; };
 		4351C2CB2AA78B2C00592A5E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */; };
@@ -65,7 +64,6 @@
 		430EC39C2AB1632F00B90508 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
 		431407282A97E3C1005B48BF /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 		431C6DF02AAFF52E006ECCED /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
-		43406FA22AB298E9002E94C9 /* TestMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMapView.swift; sourceTree = "<group>"; };
 		4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
 		4351C2C42AA7885200592A5E /* OnboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardInfoView.swift; sourceTree = "<group>"; };
 		4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 				4351C2CF2AA97D8500592A5E /* TabLocationsView */,
 				4351C2CE2AA97D5700592A5E /* TabMapView */,
 				43875CB52AA45BC7000A7519 /* OnboardView.swift */,
-				43406FA22AB298E9002E94C9 /* TestMapView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -422,7 +419,6 @@
 				43A3B6942A9511DB00905D3A /* LocationCell.swift in Sources */,
 				4304AFFA2A9699D60087F7E8 /* SpotLocation.swift in Sources */,
 				4351C2CD2AA7F68800592A5E /* UIImage+Ext.swift in Sources */,
-				43406FA32AB298E9002E94C9 /* TestMapView.swift in Sources */,
 				43A3B6A92A95254A00905D3A /* CharactersRemainView.swift in Sources */,
 				43A3B6962A95121D00905D3A /* AvatarView.swift in Sources */,
 				43A3B6A32A9524D300905D3A /* LogoView.swift in Sources */,
