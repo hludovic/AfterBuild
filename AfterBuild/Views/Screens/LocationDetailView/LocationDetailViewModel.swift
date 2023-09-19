@@ -16,6 +16,7 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var isShowingAlert: Bool = false
     @Published var isShowingProfileModal: Bool = false
+    @Published var isLoading: Bool = false
 
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 
@@ -36,12 +37,24 @@ final class LocationDetailViewModel: ObservableObject {
         UIApplication.shared.open(url)
     }
 
+    func getCheckInStatus() async {
+        guard let profileRecordID = CloudKitManager.shared.profileRecordID else{ return }
+        let userProfileRecord = try? await CloudKitManager.shared.fetchRecord(with: profileRecordID)
+        guard let userProfileRecord else { 
+            return alertItem = AlertContext.unableToGetCheckInStatus
+        }
+        guard let reference = userProfileRecord[UserProfile.kIsCheckedIn] as? CKRecord.Reference else {
+            return await MainActor.run { isCheckedIn = false }
+        }
+        await MainActor.run { isCheckedIn = reference.recordID == location.id }
+    }
+
     func updateCheckInStatus(to checkInStatus: CheckInStatus) async {
         guard let userProfileRecordID = CloudKitManager.shared.profileRecordID else { 
-            return // NO PROFILE + HIDE BUTTON
+            return alertItem = AlertContext.getProfileFailure
         }
         let profileRecord: CKRecord? = try? await CloudKitManager.shared.fetchRecord(with: userProfileRecordID)
-        guard let profileRecord else { return print("ERROR") }
+        guard let profileRecord else { return alertItem = AlertContext.unableToCheckInOut }
 
         switch checkInStatus {
         case .checkedIn:
@@ -51,20 +64,14 @@ final class LocationDetailViewModel: ObservableObject {
         }
 
         let savedProfile = try? await CloudKitManager.shared.save(record: profileRecord)
-        guard let savedProfile else { return print("ERROR") }
+        guard let savedProfile else { return alertItem = AlertContext.unableToCheckInOut }
         let userProfile = UserProfile(record: savedProfile)
 
         switch checkInStatus {
         case .checkedIn:
-            await MainActor.run {
-                self.checkedInProfiles.append(userProfile)
-                print("CHeckedID")
-            }
+            await MainActor.run { self.checkedInProfiles.append(userProfile) }
         case .checkedOut:
-            await MainActor.run {
-                checkedInProfiles.removeAll { $0.id == userProfile.id }
-                print("CHeckedOut")
-            }
+            await MainActor.run { checkedInProfiles.removeAll { $0.id == userProfile.id } }
         }
         await MainActor.run {
             isCheckedIn = checkInStatus == .checkedIn
@@ -72,11 +79,18 @@ final class LocationDetailViewModel: ObservableObject {
     }
     
     func getCheckedInProfiles() async {
+        await showLoadingView()
         do {
             let profiles = try await CloudKitManager.shared.getCheckInProfiles(for: location.id)
             await MainActor.run { checkedInProfiles = profiles }
+            await hideLoadingView()
         } catch {
-            print(error.localizedDescription)
+            await hideLoadingView()
+            alertItem = AlertContext.unableToGetCheckedInProfiles
         }
     }
+
+    @MainActor private func showLoadingView() { isLoading = true}
+    @MainActor private func hideLoadingView() { isLoading = false}
+
 }

@@ -13,7 +13,7 @@ struct AlertItem {
 }
 
 struct AlertContext {
-    // MARK - TabMapView Errors
+    // MARK: - TabMapView Errors
     static let unableToGetLocations = AlertItem(
         title: Text("Location Error"),
         message: Text("Unable to retrive locationsat this time.\nPlease try again."))
@@ -26,11 +26,7 @@ struct AlertContext {
         title: Text("Location Denied"),
         message: Text("AfterBuild does not have permition to access your location. Check your phone settings."))
 
-//    static let locationDisabled = AlertItem(
-//        title: Text("Location Service Disabled"),
-//        message: Text("Your phone location services are disebled. To change that go on your phone privacy settings"))
-
-    // MARK - TabProfile Errors
+    // MARK: - TabProfile Errors
     static let invalidProfile = AlertItem(
         title: Text("Invalid Profile"),
         message: Text("All fields are required as well ass profile photo. Your bio must be < 100 characters.\nPlease try again."))
@@ -59,10 +55,22 @@ struct AlertContext {
         title: Text("Profile Update Failed"),
         message: Text("We were unable to update your profile at this time.\nPlease try again later."))
 
-    // MARK - LocationDetail Errors
+    // MARK: - LocationDetail Errors
     static let wrongPhoneNumber = AlertItem(
         title: Text("Invalid Phone Number"),
         message: Text("The phone number for the location is invalid. Please look up the phone number yourself."))
+
+    static let unableToGetCheckInStatus = AlertItem(
+        title: Text("Server Error"),
+        message: Text("Unable to retrieve checked in status of the current user.\nPlease try again"))
+
+    static let unableToCheckInOut = AlertItem(
+        title: Text("Server Error"),
+        message: Text("Unable to check in/out at this time.\nPlease try again"))
+
+    static let unableToGetCheckedInProfiles = AlertItem(
+        title: Text("Server Error"),
+        message: Text("We are unable to get users checked into this location at this time.\nPlease try again"))
 
 
 
