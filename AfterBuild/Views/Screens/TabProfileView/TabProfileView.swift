@@ -19,7 +19,6 @@ struct TabProfileView: View {
     @StateObject private var viewModel = TabProfileViewModel()
     @FocusState var focusedField: Field?
 
-
     var body: some View {
         ZStack {
             VStack {
@@ -52,7 +51,23 @@ struct TabProfileView: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 7) {
-                    CharactersRemainView(currentCount: viewModel.bio.count)
+                    HStack{
+                        CharactersRemainView(currentCount: viewModel.bio.count)
+
+                        Spacer()
+                        
+                        Button {
+
+                        } label: {
+                            Label("Ceck Out", systemImage: "mappin.and.ellipse")
+                        }
+                        .foregroundStyle(Color.white)
+                        .font(.system(size: 12, weight: .semibold))
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 10)
+                        .background(Color.afterBuildRed)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
 
                     TextField("Enter your bio", text: $viewModel.bio, axis: .vertical)
                         .focused($focusedField, equals: .bio)

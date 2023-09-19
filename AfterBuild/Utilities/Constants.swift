@@ -44,7 +44,7 @@ extension SpotLocation {
 extension UserProfile {
     static let kFirstName = "firstName"
     static let kLastName = "lastName"
-    static let kCompagnyName = "compagnyName"
+    static let kCompanyName = "compagnyName"
     static let kBio = "bio"
     static let kAvatar = "avatar"
     static let kIsCheckedIn = "isCheckedIn"

@@ -23,7 +23,7 @@ struct MockData {
         let record = CKRecord(recordType: RecordType.profile)
         record[UserProfile.kFirstName] = "Test"
         record[UserProfile.kLastName] = "USER"
-        record[UserProfile.kCompagnyName] = "Super Compagny"
+        record[UserProfile.kCompanyName] = "Super Compagny"
         record[UserProfile.kBio] = "This is my super bio, I home it's not too long I can't check character count."
         return record
     }

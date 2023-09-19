@@ -20,6 +20,7 @@ final class TabProfileViewModel: ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var isLoading: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
+    @Published var isCheckedIn: Bool = false
 
     private var existingProfileRecord: CKRecord? {
         didSet { profileContext = .update }
@@ -52,12 +53,25 @@ final class TabProfileViewModel: ObservableObject {
         }
     }
 
+    func getCheckInStatus() async {
+        guard let profileRecordID = CloudKitManager.shared.profileRecordID else{ return }
+        let userProfileRecord = try? await CloudKitManager.shared.fetchRecord(with: profileRecordID)
+        guard let userProfileRecord else {
+            return await MainActor.run { alertItem = AlertContext.unableToGetCheckInStatus }
+        }
+        guard let reference = userProfileRecord[UserProfile.kIsCheckedIn] as? CKRecord.Reference else {
+            return await MainActor.run { isCheckedIn = false }
+        }
+        await MainActor.run { isCheckedIn = true }
+    }
+
     func updateProfile() async {
-        guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
-        guard let profileRecord = existingProfileRecord else { return alertItem = AlertContext.getProfileFailure }
+        guard isValidProfile() else { return await MainActor.run {  alertItem = AlertContext.invalidProfile } }
+        guard let profileRecord = existingProfileRecord else {
+            return await MainActor.run { alertItem = AlertContext.getProfileFailure } }
         profileRecord[UserProfile.kFirstName] = firstName
         profileRecord[UserProfile.kLastName] = lastName
-        profileRecord[UserProfile.kCompagnyName] = companyName
+        profileRecord[UserProfile.kCompanyName] = companyName
         profileRecord[UserProfile.kBio] = bio
         profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
         await showLoadingView()
@@ -73,14 +87,14 @@ final class TabProfileViewModel: ObservableObject {
     }
 
     func createProfile() async {
-        guard isValidProfile() else { return alertItem = AlertContext.invalidProfile }
+        guard isValidProfile() else { return await MainActor.run {  alertItem = AlertContext.invalidProfile } }
         guard let userRecord = CloudKitManager.shared.userRecord else {
             return await MainActor.run { alertItem = AlertContext.noUserRecord }
         }
         let profileRecord = CKRecord(recordType: RecordType.profile)
         profileRecord[UserProfile.kFirstName] = firstName
         profileRecord[UserProfile.kLastName] = lastName
-        profileRecord[UserProfile.kCompagnyName] = companyName
+        profileRecord[UserProfile.kCompanyName] = companyName
         profileRecord[UserProfile.kBio] = bio
         profileRecord[UserProfile.kAvatar] = avatar.convertToCKAsset()
         userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
@@ -108,6 +122,7 @@ final class TabProfileViewModel: ObservableObject {
               avatar != PlaceholderImage.avatar else { return false }
         return true
     }
+
     @MainActor private func showLoadingView() { isLoading = true}
     @MainActor private func hideLoadingView() { isLoading = false}
 }

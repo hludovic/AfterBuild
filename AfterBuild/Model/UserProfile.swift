@@ -21,7 +21,7 @@ struct UserProfile: Identifiable {
         id = record.recordID
         firstName = record[UserProfile.kFirstName] as? String ?? "N/A"
         lastName = record[UserProfile.kLastName] as? String ?? "N/A"
-        compagnyName = record[UserProfile.kCompagnyName] as? String ?? "N/A"
+        compagnyName = record[UserProfile.kCompanyName] as? String ?? "N/A"
         bio = record[UserProfile.kBio] as? String ?? "N/A"
         avatar = record[UserProfile.kAvatar] as? CKAsset
     }

@@ -41,7 +41,7 @@ final class LocationDetailViewModel: ObservableObject {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else{ return }
         let userProfileRecord = try? await CloudKitManager.shared.fetchRecord(with: profileRecordID)
         guard let userProfileRecord else { 
-            return alertItem = AlertContext.unableToGetCheckInStatus
+            return await MainActor.run { alertItem = AlertContext.unableToGetCheckInStatus }
         }
         guard let reference = userProfileRecord[UserProfile.kIsCheckedIn] as? CKRecord.Reference else {
             return await MainActor.run { isCheckedIn = false }
@@ -51,10 +51,12 @@ final class LocationDetailViewModel: ObservableObject {
 
     func updateCheckInStatus(to checkInStatus: CheckInStatus) async {
         guard let userProfileRecordID = CloudKitManager.shared.profileRecordID else { 
-            return alertItem = AlertContext.getProfileFailure
+            return await MainActor.run { alertItem = AlertContext.getProfileFailure }
         }
         let profileRecord: CKRecord? = try? await CloudKitManager.shared.fetchRecord(with: userProfileRecordID)
-        guard let profileRecord else { return alertItem = AlertContext.unableToCheckInOut }
+        guard let profileRecord else { 
+            return await MainActor.run { alertItem = AlertContext.unableToCheckInOut }
+        }
 
         switch checkInStatus {
         case .checkedIn:
@@ -64,7 +66,7 @@ final class LocationDetailViewModel: ObservableObject {
         }
 
         let savedProfile = try? await CloudKitManager.shared.save(record: profileRecord)
-        guard let savedProfile else { return alertItem = AlertContext.unableToCheckInOut }
+        guard let savedProfile else { return await MainActor.run {  alertItem = AlertContext.unableToCheckInOut } }
         let userProfile = UserProfile(record: savedProfile)
 
         switch checkInStatus {
@@ -86,11 +88,11 @@ final class LocationDetailViewModel: ObservableObject {
             await hideLoadingView()
         } catch {
             await hideLoadingView()
-            alertItem = AlertContext.unableToGetCheckedInProfiles
+            await MainActor.run { alertItem = AlertContext.unableToGetCheckedInProfiles }
+
         }
     }
 
     @MainActor private func showLoadingView() { isLoading = true}
     @MainActor private func hideLoadingView() { isLoading = false}
-
 }
