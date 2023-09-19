@@ -89,6 +89,7 @@ final class TabProfileViewModel: ObservableObject {
             let records = try await CloudKitManager.shared.save(records: [userRecord, profileRecord])
             for record in records where record.recordType == RecordType.profile {
                 existingProfileRecord = record
+                CloudKitManager.shared.profileRecordID = record.recordID
             }
             await hideLoadingView()
             await MainActor.run { alertItem = AlertContext.createProfileSuccess }
