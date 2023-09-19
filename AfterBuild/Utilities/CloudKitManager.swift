@@ -46,4 +46,13 @@ class CloudKitManager {
     func fetchRecord(with id: CKRecord.ID) async throws -> CKRecord {
         return try await container.publicCloudDatabase.record(for: id)
     }
+
+    func getCheckInProfiles(for locationID: CKRecord.ID) async throws -> [UserProfile] {
+        let reference = CKRecord.Reference(recordID: locationID, action: .none)
+        let predicate = NSPredicate(format: "isCheckedIn == %@", reference)
+        let querry = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        let (results, _) = try await container.publicCloudDatabase.records(matching: querry)
+        let resultRecords = results.compactMap { try? $1.get() }
+        return resultRecords.map(UserProfile.init)
+    }
 }

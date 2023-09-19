@@ -43,7 +43,7 @@ struct LocationDetailView: View {
                         }
                         Button {
                             Task {
-                                await viewModel.updateCheckInStatus(to: .checkedOut)
+                                await viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                             }
                         } label: {
                             LocationActionButton(color: .red, imageName: "person.fill.checkmark")
@@ -58,18 +58,12 @@ struct LocationDetailView: View {
 
                 ScrollView {
                     LazyVGrid(columns: viewModel.columns) {
-                        FirstNameAvatarView(firstName: "Pierre")
-                            .onTapGesture {
-                                withAnimation {
-                                    viewModel.isShowingProfileModal = true
+                        ForEach(viewModel.checkedInProfiles) { profile in
+                            FirstNameAvatarView(profile: profile)
+                                .onTapGesture {
+                                    withAnimation {  viewModel.isShowingProfileModal = true }
                                 }
-                            }
-                        FirstNameAvatarView(firstName: "Paul")
-                        FirstNameAvatarView(firstName: "Jack")
-                        FirstNameAvatarView(firstName: "Marc")
-                        FirstNameAvatarView(firstName: "Martine")
-                        FirstNameAvatarView(firstName: "Antoine")
-                        FirstNameAvatarView(firstName: "Lise")
+                        }
                     }
                 }
             }
@@ -91,6 +85,7 @@ struct LocationDetailView: View {
                 .zIndex(2)
             }
         }
+        .task { await viewModel.getCheckedInProfiles() }
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
         .navigationTitle(viewModel.location.name)
         Spacer()

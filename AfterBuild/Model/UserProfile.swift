@@ -8,8 +8,8 @@
 import CloudKit
 import UIKit
 
-struct UserProfile {
-    let ckRecordID: CKRecord.ID
+struct UserProfile: Identifiable {
+    let id: CKRecord.ID
     let firstName: String
     let lastName: String
     let compagnyName: String
@@ -18,7 +18,7 @@ struct UserProfile {
     let isCheckedIn: CKRecord.Reference? = nil
 
     init(record: CKRecord) {
-        ckRecordID = record.recordID
+        id = record.recordID
         firstName = record[UserProfile.kFirstName] as? String ?? "N/A"
         lastName = record[UserProfile.kLastName] as? String ?? "N/A"
         compagnyName = record[UserProfile.kCompagnyName] as? String ?? "N/A"

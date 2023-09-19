@@ -11,6 +11,8 @@ import CloudKit
 
 final class LocationDetailViewModel: ObservableObject {
     enum CheckInStatus { case checkedIn, checkedOut }
+    @Published var checkedInProfiles: [UserProfile] = []
+    @Published var isCheckedIn: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var isShowingAlert: Bool = false
     @Published var isShowingProfileModal: Bool = false
@@ -38,26 +40,43 @@ final class LocationDetailViewModel: ObservableObject {
         guard let userProfileRecordID = CloudKitManager.shared.profileRecordID else { 
             return // NO PROFILE + HIDE BUTTON
         }
+        let profileRecord: CKRecord? = try? await CloudKitManager.shared.fetchRecord(with: userProfileRecordID)
+        guard let profileRecord else { return print("ERROR") }
 
-        var profileRecord: CKRecord? = nil
-        do {
-            profileRecord = try await CloudKitManager.shared.fetchRecord(with: userProfileRecordID)
-            switch checkInStatus {
-            case .checkedIn:
-                profileRecord?[UserProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
-            case .checkedOut:
-                profileRecord?[UserProfile.kIsCheckedIn] = nil
-            }
-        } catch {
-            return print("ERROR + NO PROFILE RECORD")
+        switch checkInStatus {
+        case .checkedIn:
+            profileRecord[UserProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
+        case .checkedOut:
+            profileRecord[UserProfile.kIsCheckedIn] = nil
         }
-        
-        guard let profileRecord else { return }
 
+        let savedProfile = try? await CloudKitManager.shared.save(record: profileRecord)
+        guard let savedProfile else { return print("ERROR") }
+        let userProfile = UserProfile(record: savedProfile)
+
+        switch checkInStatus {
+        case .checkedIn:
+            await MainActor.run {
+                self.checkedInProfiles.append(userProfile)
+                print("CHeckedID")
+            }
+        case .checkedOut:
+            await MainActor.run {
+                checkedInProfiles.removeAll { $0.id == userProfile.id }
+                print("CHeckedOut")
+            }
+        }
+        await MainActor.run {
+            isCheckedIn = checkInStatus == .checkedIn
+        }
+    }
+    
+    func getCheckedInProfiles() async {
         do {
-            _ = try await CloudKitManager.shared.save(record: profileRecord)
+            let profiles = try await CloudKitManager.shared.getCheckInProfiles(for: location.id)
+            await MainActor.run { checkedInProfiles = profiles }
         } catch {
-            return print("ERROR + UNABLE TO SAVE")
+            print(error.localizedDescription)
         }
     }
 }
