@@ -56,13 +56,27 @@ final class TabProfileViewModel: ObservableObject {
     func getCheckInStatus() async {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else{ return }
         let userProfileRecord = try? await CloudKitManager.shared.fetchRecord(with: profileRecordID)
-        guard let userProfileRecord else {
-            return await MainActor.run { alertItem = AlertContext.unableToGetCheckInStatus }
-        }
-        guard let reference = userProfileRecord[UserProfile.kIsCheckedIn] as? CKRecord.Reference else {
+        guard let userProfileRecord else { return }
+        guard userProfileRecord[UserProfile.kIsCheckedIn] is CKRecord.Reference else {
             return await MainActor.run { isCheckedIn = false }
         }
         await MainActor.run { isCheckedIn = true }
+    }
+
+    func checkOutStatus() async {
+        guard let userProfileID = CloudKitManager.shared.profileRecordID else { 
+            return alertItem = AlertContext.getProfileFailure
+        }
+        let userRecord = try? await CloudKitManager.shared.fetchRecord(with: userProfileID)
+        guard let userRecord else {
+            return await MainActor.run { alertItem = AlertContext.unableToCheckInOut }
+        }
+        userRecord[UserProfile.kIsCheckedIn] = nil
+        let savedProfile = try? await CloudKitManager.shared.save(record: userRecord)
+        guard savedProfile != nil else {
+            return await MainActor.run { alertItem = AlertContext.unableToCheckInOut }
+        }
+        await MainActor.run { isCheckedIn = false }
     }
 
     func updateProfile() async {
@@ -83,7 +97,6 @@ final class TabProfileViewModel: ObservableObject {
             await hideLoadingView()
             await MainActor.run { alertItem = AlertContext.updateProfileFailure }
         }
-
     }
 
     func createProfile() async {
