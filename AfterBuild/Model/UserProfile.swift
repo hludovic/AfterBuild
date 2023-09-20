@@ -15,7 +15,7 @@ struct UserProfile: Identifiable {
     let compagnyName: String
     let bio: String
     let avatar: CKAsset!
-    let isCheckedIn: CKRecord.Reference? = nil
+    let isCheckedIn: CKRecord.Reference?
 
     init(record: CKRecord) {
         id = record.recordID
@@ -24,6 +24,7 @@ struct UserProfile: Identifiable {
         compagnyName = record[UserProfile.kCompanyName] as? String ?? "N/A"
         bio = record[UserProfile.kBio] as? String ?? "N/A"
         avatar = record[UserProfile.kAvatar] as? CKAsset
+        isCheckedIn = record[UserProfile.kIsCheckedIn] as? CKRecord.Reference
     }
 
     func getAvatar() -> UIImage {
