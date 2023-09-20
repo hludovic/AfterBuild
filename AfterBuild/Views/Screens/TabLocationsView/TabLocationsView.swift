@@ -10,6 +10,7 @@ import SwiftUI
 struct TabLocationsView: View {
 
     @EnvironmentObject private var locationManager: LocationManager
+    @ObservedObject var viewModel = TabLocationsViewModel()
 
     var body: some View {
         NavigationStack {
