@@ -14,7 +14,6 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
         didSet { isShowingAlert = true }
     }
     @Published var position: MapCameraPosition = .automatic
-
     var deviceLocationManager: CLLocationManager = CLLocationManager()
     var hasSeenOnboardView: Bool {
         return UserDefaults.standard.bool(forKey: StorageKey.hasSeenOnboardView)
@@ -37,7 +36,6 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let currentLocation = locations.last else { return }
         position = .userLocation(followsHeading: true, fallback: .automatic)
     }
 

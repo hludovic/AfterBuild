@@ -19,8 +19,6 @@ struct BannerImageView: View {
     }
 }
 
-struct BannerImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        BannerImageView(image: PlaceholderImage.banner)
-    }
+#Preview {
+    BannerImageView(image: PlaceholderImage.banner)
 }

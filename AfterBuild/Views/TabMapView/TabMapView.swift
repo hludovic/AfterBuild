@@ -22,7 +22,6 @@ struct TabMapView: View {
                 }
                 UserAnnotation()
             }
-
             HStack {
                 LocationButton(.currentLocation) {
                     viewModel.requestAllowOnceLocationPermission()

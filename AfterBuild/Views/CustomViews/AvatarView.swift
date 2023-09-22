@@ -20,8 +20,6 @@ struct AvatarView: View {
     }
 }
 
-struct AvatarView_Previews: PreviewProvider {
-    static var previews: some View {
-        AvatarView(size: 80, image: PlaceholderImage.avatar)
-    }
+#Preview {
+    AvatarView(size: 80, image: PlaceholderImage.avatar)
 }

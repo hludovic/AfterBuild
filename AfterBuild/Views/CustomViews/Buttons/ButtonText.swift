@@ -20,8 +20,6 @@ struct ButtonText: View {
     }
 }
 
-struct ButtonText_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonText(title: "Button Text")
-    }
+#Preview {
+    ButtonText(title: "Button Text")
 }

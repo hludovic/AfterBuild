@@ -21,11 +21,8 @@ final class TabProfileViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var isCheckedIn: Bool = false
-
-    private var existingProfileRecord: CKRecord? {
-        didSet { profileContext = .update }
-    }
     var profileContext: Context = .create
+    private var existingProfileRecord: CKRecord? { didSet { profileContext = .update } }
 
     func getProfile() async {
         guard let userRecord = CloudKitManager.shared.userRecord else {
@@ -137,5 +134,6 @@ final class TabProfileViewModel: ObservableObject {
     }
 
     @MainActor private func showLoadingView() { isLoading = true}
+
     @MainActor private func hideLoadingView() { isLoading = false}
 }

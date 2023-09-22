@@ -91,15 +91,12 @@ struct LocationDetailView: View {
                     .ignoresSafeArea()
                     .opacity(0.9)
                     .transition(.opacity)
-//                    .animation(.easeInOut, value: viewModel.isShowingProfileModal)
-//                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.35)))
                     .zIndex(1)
                 ProfileModalView(
                     isShowing: $viewModel.isShowingProfileModal,
                     profile: UserProfile(record: MockData.profile)
                 )
                 .transition(.opacity.combined(with: .slide))
-//                .animation(.easeInOut, value: viewModel.isShowingProfileModal)
                 .zIndex(2)
             }
         }
@@ -113,11 +110,10 @@ struct LocationDetailView: View {
     }
 }
 
-struct LocationDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let location = SpotLocation(record: MockData.location)
-        NavigationStack {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
-        }
+#Preview {
+    let location = SpotLocation(record: MockData.location)
+
+    return NavigationStack {
+        LocationDetailView(viewModel: LocationDetailViewModel(location: location))
     }
 }

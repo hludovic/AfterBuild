@@ -17,13 +17,10 @@ struct DismissButton: View {
                 .foregroundColor(.white)
                 .imageScale(.small)
                 .frame(width: 44, height: 44)
-
         }
     }
 }
 
-struct DismissButton_Previews: PreviewProvider {
-    static var previews: some View {
-        DismissButton()
-    }
+#Preview {
+    DismissButton()
 }

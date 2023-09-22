@@ -19,8 +19,6 @@ struct DescriptionView: View {
     }
 }
 
-struct DescriptionView_Previews: PreviewProvider {
-    static var previews: some View {
-        DescriptionView(description: "Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
-    }
+#Preview {
+    DescriptionView(description: "Its is the description of the spot Its is the description of the spot Its is the description of the spot Its is the description of the spot")
 }

@@ -17,9 +17,7 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var isShowingProfileModal: Bool = false
     @Published var isLoading: Bool = false
-
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-
     var location: SpotLocation
 
     init(location: SpotLocation) { self.location = location }
@@ -30,6 +28,7 @@ final class LocationDetailViewModel: ObservableObject {
         mapItem.name = location.name
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
+
     func callLocation() {
         guard let url = URL(string: "tel://\(location.phoneNumber)") else {
             return alertItem = AlertContext.wrongPhoneNumber
@@ -94,5 +93,6 @@ final class LocationDetailViewModel: ObservableObject {
     }
 
     @MainActor private func showLoadingView() { isLoading = true}
+
     @MainActor private func hideLoadingView() { isLoading = false}
 }

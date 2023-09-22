@@ -30,12 +30,10 @@ struct OnboardInfoView: View {
     }
 }
 
-struct OnboardInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardInfoView(
-            imageName: "building.2.crop.circle",
-            title: "Restaurant Locations",
-            description: "Find places to dine around around Jarry in Guadeloupe"
-        )
-    }
+#Preview {
+    OnboardInfoView(
+        imageName: "building.2.crop.circle",
+        title: "Restaurant Locations",
+        description: "Find places to dine around around Jarry in Guadeloupe"
+    )
 }

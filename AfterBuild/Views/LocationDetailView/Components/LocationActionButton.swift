@@ -25,8 +25,6 @@ struct LocationActionButton: View {
     }
 }
 
-struct LocationActionButton_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationActionButton(color: .brandPrimary, imageName: "location.fill")
-    }
+#Preview {
+    LocationActionButton(color: .brandPrimary, imageName: "location.fill")
 }

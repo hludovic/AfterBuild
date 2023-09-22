@@ -21,8 +21,6 @@ struct FirstNameAvatarView: View {
     }
 }
 
-struct FirstNameAvatarView_Previews: PreviewProvider {
-    static var previews: some View {
-        FirstNameAvatarView(profile: UserProfile(record: MockData.profile))
-    }
+#Preview {
+    FirstNameAvatarView(profile: UserProfile(record: MockData.profile))
 }

@@ -71,7 +71,4 @@ struct AlertContext {
     static let unableToGetCheckedInProfiles = AlertItem(
         title: Text("Server Error"),
         message: Text("We are unable to get users checked into this location at this time.\nPlease try again"))
-
-
-
 }

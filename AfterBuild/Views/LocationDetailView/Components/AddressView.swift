@@ -18,8 +18,6 @@ struct AddressView: View {
     }
 }
 
-struct AddressView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddressView(address: "1 S Market St Ste 40")
-    }
+#Preview {
+    AddressView(address: "1 S Market St Ste 40")
 }
