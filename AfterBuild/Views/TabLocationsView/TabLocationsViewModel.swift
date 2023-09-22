@@ -5,17 +5,18 @@
 //  Created by Ludovic HENRY on 28/08/2023.
 //
 
-import Foundation
 import CloudKit
 
 final class TabLocationsViewModel: ObservableObject {
 
-    func getUsersChecked() async {
+    @Published var checkedInProfiles: [CKRecord.ID: [UserProfile]] = [:]
+
+    func getCheckedInProfiles() async {
         let locations: [SpotLocation]? = try? await CloudKitManager.shared.getLocations()
-        guard let locations else { return }
+        guard let locations else { return print("ERROR") }
         let users: [UserProfile]? = try? await CloudKitManager.shared.getUserProfilesChecked(in: locations)
-        guard let users else { return }
-        let sorted = sortByLocations(users: users)
+        guard let users else { return print("ERROR") }
+        await MainActor.run { checkedInProfiles = sortByLocations(users: users) }
     }
 
     private func sortByLocations(users: [UserProfile]) -> [CKRecord.ID : [UserProfile]] {

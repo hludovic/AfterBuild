@@ -26,8 +26,6 @@ struct CharactersRemainView: View {
     }
 }
 
-struct CharactersRemainView_Previews: PreviewProvider {
-    static var previews: some View {
-        CharactersRemainView(currentCount: 12)
-    }
+#Preview {
+    CharactersRemainView(currentCount: 12)
 }

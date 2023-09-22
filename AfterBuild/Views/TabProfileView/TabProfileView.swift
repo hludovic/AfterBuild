@@ -126,11 +126,8 @@ struct TabProfileView: View {
     }
 }
 
-struct TabProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            TabProfileView()
-
-        }
+#Preview {
+    NavigationStack {
+        TabProfileView()
     }
 }

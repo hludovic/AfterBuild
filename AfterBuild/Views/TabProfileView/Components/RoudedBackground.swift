@@ -15,8 +15,6 @@ struct RoudedBackground: View {
     }
 }
 
-struct RoudedBackground_Previews: PreviewProvider {
-    static var previews: some View {
-        RoudedBackground()
-    }
+#Preview {
+    RoudedBackground()
 }
