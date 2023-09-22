@@ -51,6 +51,7 @@
 		43ACC19F2AAC0D300016DEBD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ACC19E2AAC0D300016DEBD /* LoadingView.swift */; };
 		43E41A1A2ABD175D00BD6857 /* AdditionalProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E41A192ABD175D00BD6857 /* AdditionalProfilesView.swift */; };
 		43F4EA782AA6EC12003FFBA2 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */; };
+		43F71A8C2ABD2C87009FA213 /* MapBalloonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F71A8B2ABD2C87009FA213 /* MapBalloonShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		43ACC19E2AAC0D300016DEBD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		43E41A192ABD175D00BD6857 /* AdditionalProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfilesView.swift; sourceTree = "<group>"; };
 		43F4EA772AA6EC12003FFBA2 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		43F71A8B2ABD2C87009FA213 /* MapBalloonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBalloonShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		4351C2CE2AA97D5700592A5E /* TabMapView */ = {
 			isa = PBXGroup;
 			children = (
+				43F71A8D2ABD4375009FA213 /* Components */,
 				43A098A52A90184900B0942A /* TabMapView.swift */,
 				43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */,
 			);
@@ -309,6 +312,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		43F71A8D2ABD4375009FA213 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				43F71A8B2ABD2C87009FA213 /* MapBalloonShape.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -410,6 +421,7 @@
 				43F4EA782AA6EC12003FFBA2 /* DismissButton.swift in Sources */,
 				4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */,
 				43A3B69A2A951F0800905D3A /* View+Ext.swift in Sources */,
+				43F71A8C2ABD2C87009FA213 /* MapBalloonShape.swift in Sources */,
 				43A3B6A72A95253500905D3A /* EditImage.swift in Sources */,
 				43849C682A9D50A400CFDCD2 /* AlertItem.swift in Sources */,
 				43A3B6942A9511DB00905D3A /* LocationCell.swift in Sources */,
