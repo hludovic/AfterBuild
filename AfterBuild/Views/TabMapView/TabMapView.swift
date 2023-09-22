@@ -22,11 +22,6 @@ struct TabMapView: View {
                 }
                 UserAnnotation()
             }
-//            .mapControls {
-//                MapPitchToggle()
-//                MapUserLocationButton()
-//                MapCompass()
-//            }
 
             HStack {
                 LocationButton(.currentLocation) {
@@ -44,9 +39,10 @@ struct TabMapView: View {
                 } label: {
                     Image(systemName: "fork.knife.circle.fill")
                         .resizable()
+                        .background(.white)
                         .frame(width: 40, height: 40)
                         .foregroundStyle(Color.afterBuildRed)
-                        .foregroundStyle(.brandPrimary)
+                        .clipShape(Circle())
                 }
                 Spacer()
             }
