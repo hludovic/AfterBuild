@@ -28,7 +28,6 @@ struct TabMapView: View {
                 UserAnnotation()
             }
             .mapControls {
-                MapUserLocationButton()
                 MapCompass()
                 MapScaleView()
             }
