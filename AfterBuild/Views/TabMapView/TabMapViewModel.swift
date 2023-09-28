@@ -7,15 +7,12 @@
 
 import _MapKit_SwiftUI
 
-final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var isShowingOnboardView: Bool = false
+final class TabMapViewModel: NSObject, ObservableObject {
     @Published var isShowingAlert: Bool = false
+    @Published var isShowingDetailView: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var position: MapCameraPosition = .automatic
-    var deviceLocationManager: CLLocationManager = CLLocationManager()
-    var hasSeenOnboardView: Bool {
-        return UserDefaults.standard.bool(forKey: StorageKey.hasSeenOnboardView)
-    }
+    private var deviceLocationManager: CLLocationManager = CLLocationManager()
 
     override init() {
         super.init()
@@ -24,20 +21,6 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
 
     func requestAllowOnceLocationPermission() {
         deviceLocationManager.requestLocation()
-    }
-
-    func checkIfHasSeenOnboard() {
-        if !hasSeenOnboardView {
-            isShowingOnboardView = true
-            UserDefaults.standard.setValue(true, forKey: StorageKey.hasSeenOnboardView)
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        position = .userLocation(followsHeading: true, fallback: .automatic)
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     }
 
     func getLocations(for locationManager: LocationManager) {
@@ -49,5 +32,14 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
                 await MainActor.run{ alertItem = AlertContext.unableToGetLocations }
             }
         }
+    }
+}
+
+extension TabMapViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        position = .userLocation(followsHeading: true, fallback: .automatic)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     }
 }

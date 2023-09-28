@@ -1,8 +1,8 @@
 //
-//  CustomModifiers.swift
+//  ProfileNameStyle.swift
 //  AfterBuild
 //
-//  Created by Ludovic HENRY on 22/08/2023.
+//  Created by Ludovic HENRY on 27/09/2023.
 //
 
 import SwiftUI

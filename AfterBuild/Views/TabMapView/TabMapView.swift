@@ -17,8 +17,12 @@ struct TabMapView: View {
         ZStack(alignment: .bottom) {
             Map(position: $viewModel.position) {
                 ForEach(locationManager.locations, id: \.id) { location in
-                    Annotation(location.name, coordinate: location.location.coordinate) {
+                    Annotation(location.name, coordinate: location.location.coordinate, anchor: .bottom) {
                         SpotAnnotation(location: location)
+                            .onTapGesture {
+                                locationManager.selectedLocation = location
+                                viewModel.isShowingDetailView = true
+                            }
                     }
                 }
                 UserAnnotation()
@@ -32,16 +36,8 @@ struct TabMapView: View {
                 LocationButton(.currentLocation) {
                     viewModel.requestAllowOnceLocationPermission()
                 }
-                .scaledToFit()
-                .frame(width: 50, height: 30)
-                .padding(.vertical, 5)
-                .background(Color.afterBuildRed)
-                .tint(.afterBuildRed)
-                .foregroundColor(.white)
-                .symbolVariant(.fill)
-                .labelStyle(.iconOnly)
-                .clipShape(Capsule())
-                .padding(5)
+                .modifier(LocationButtonStyle())
+                .padding()
 
                 Button {
                     withAnimation { viewModel.position = .automatic }
@@ -52,14 +48,25 @@ struct TabMapView: View {
             }
         }
         .onAppear {
-            viewModel.checkIfHasSeenOnboard()
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
             }
         }
-        .sheet(isPresented: $viewModel.isShowingOnboardView,
-                content: { OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView) }
-        )
+        .sheet(isPresented: $viewModel.isShowingDetailView) {
+            if let location = locationManager.selectedLocation {
+                NavigationStack {
+                    LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+                        .toolbarTitleDisplayMode(.inline)
+                        .toolbar {
+                            Button {
+                                viewModel.isShowingDetailView =  false
+                            } label: {
+                                Text("Close")
+                            }
+                        }
+                }
+            }
+        }
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
     }
 }

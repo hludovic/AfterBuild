@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @StateObject var viewModel: AppTabViewModel = AppTabViewModel()
+
     var body: some View {
         TabView {
             TabMapView()
@@ -27,12 +29,16 @@ struct AppTabView: View {
         }
         .task {
             try? await CloudKitManager.shared.getUserRecord()
+            viewModel.checkIfHasSeenOnboard()
+        }
+        .sheet(isPresented: $viewModel.isShowingOnboardView) {
+            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
         }
         .tint(.brandPrimary)
     }
 }
 
 #Preview {
-    AppTabView()
+    AppTabView(viewModel: AppTabViewModel())
         .environmentObject(LocationManager())
 }

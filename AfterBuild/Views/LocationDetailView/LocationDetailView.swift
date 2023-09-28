@@ -84,6 +84,7 @@ struct LocationDetailView: View {
                     }
                     if viewModel.isLoading { LoadingView() }
                 }
+                Spacer()
             }
 
             if viewModel.isShowingProfileModal {
@@ -106,7 +107,6 @@ struct LocationDetailView: View {
         }
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
         .navigationTitle(viewModel.location.name)
-        Spacer()
     }
 }
 

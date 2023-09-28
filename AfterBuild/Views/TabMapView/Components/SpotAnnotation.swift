@@ -29,7 +29,6 @@ struct SpotAnnotation: View {
                 .foregroundStyle(.white)
                 .clipShape(Capsule())
                 .offset(x: 20, y: -28)
-
         }
     }
 }

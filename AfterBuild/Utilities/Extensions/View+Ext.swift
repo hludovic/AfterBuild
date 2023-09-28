@@ -8,12 +8,6 @@
 import SwiftUI
 
 extension View {
-    func profileNameStyle() -> some View {
-        self.modifier(ProfileNameStyle())
-    }
-}
-
-extension View {
     @ViewBuilder func alertMessage(item: AlertItem?, isPresented: Binding<Bool>) -> some View {
         if let item {
             self.alert(item.title, isPresented: isPresented) {
