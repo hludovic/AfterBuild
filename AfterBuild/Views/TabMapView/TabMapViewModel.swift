@@ -10,9 +10,7 @@ import _MapKit_SwiftUI
 final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var isShowingOnboardView: Bool = false
     @Published var isShowingAlert: Bool = false
-    @Published var alertItem: AlertItem? {
-        didSet { isShowingAlert = true }
-    }
+    @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var position: MapCameraPosition = .automatic
     var deviceLocationManager: CLLocationManager = CLLocationManager()
     var hasSeenOnboardView: Bool {
@@ -40,7 +38,6 @@ final class TabMapViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        alertItem = AlertContext.unableToGetLocations
     }
 
     func getLocations(for locationManager: LocationManager) {

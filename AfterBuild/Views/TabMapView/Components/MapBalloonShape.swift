@@ -17,8 +17,6 @@ struct MapBalloonShape: Shape {
         path.addQuadCurve(
             to: CGPoint(x: rect.midX, y: rect.maxY),
             control: CGPoint(x: rect.maxX, y: rect.minY))
-
-
         return path
     }
 }

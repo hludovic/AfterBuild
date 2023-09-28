@@ -17,31 +17,36 @@ struct TabMapView: View {
         ZStack(alignment: .bottom) {
             Map(position: $viewModel.position) {
                 ForEach(locationManager.locations, id: \.id) { location in
-                    Marker(location.name, coordinate: location.location.coordinate)
-                        .tint(.brandPrimary)
+                    Annotation(location.name, coordinate: location.location.coordinate) {
+                        SpotAnnotation(location: location)
+                    }
                 }
                 UserAnnotation()
+            }
+            .mapControls {
+                MapUserLocationButton()
+                MapCompass()
+                MapScaleView()
             }
             HStack {
                 LocationButton(.currentLocation) {
                     viewModel.requestAllowOnceLocationPermission()
                 }
-                .foregroundStyle(.white)
+                .scaledToFit()
+                .frame(width: 50, height: 30)
+                .padding(.vertical, 5)
+                .background(Color.afterBuildRed)
+                .tint(.afterBuildRed)
+                .foregroundColor(.white)
                 .symbolVariant(.fill)
                 .labelStyle(.iconOnly)
-                .tint(.afterBuildRed)
                 .clipShape(Capsule())
-                .padding()
+                .padding(5)
 
                 Button {
-                    viewModel.position = .automatic
+                    withAnimation { viewModel.position = .automatic }
                 } label: {
-                    Image(systemName: "fork.knife.circle.fill")
-                        .resizable()
-                        .background(.white)
-                        .frame(width: 40, height: 40)
-                        .foregroundStyle(Color.afterBuildRed)
-                        .clipShape(Circle())
+                    ForkButton()
                 }
                 Spacer()
             }
@@ -52,14 +57,9 @@ struct TabMapView: View {
                 viewModel.getLocations(for: locationManager)
             }
         }
-        .sheet(
-            isPresented: $viewModel.isShowingOnboardView,
-            content: {
-                OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
-                    .presentationDragIndicator(.visible)
-            }
+        .sheet(isPresented: $viewModel.isShowingOnboardView,
+                content: { OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView) }
         )
-        .toolbarBackground(.visible, for: .tabBar)
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
     }
 }

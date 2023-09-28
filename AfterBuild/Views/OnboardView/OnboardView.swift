@@ -31,6 +31,7 @@ struct OnboardView: View {
             .padding(.horizontal, 40)
             Spacer()
         }
+        .presentationDragIndicator(.visible)
     }
 }
 

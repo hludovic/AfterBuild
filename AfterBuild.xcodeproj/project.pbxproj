@@ -24,6 +24,7 @@
 		4351C2CD2AA7F68800592A5E /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CC2AA7F68800592A5E /* UIImage+Ext.swift */; };
 		4351C2D22AA97DD200592A5E /* TabProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2D12AA97DD200592A5E /* TabProfileViewModel.swift */; };
 		436D186D2A91553C00E43BD1 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D186C2A91553C00E43BD1 /* LocationDetailView.swift */; };
+		438415272AC514EC0049463A /* ForkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438415262AC514EC0049463A /* ForkButton.swift */; };
 		43849C682A9D50A400CFDCD2 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C672A9D50A400CFDCD2 /* AlertItem.swift */; };
 		43849C6B2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */; };
 		43849C6D2A9D7FA300CFDCD2 /* TabMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */; };
@@ -73,6 +74,7 @@
 		4351C2CC2AA7F68800592A5E /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		4351C2D12AA97DD200592A5E /* TabProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabProfileViewModel.swift; sourceTree = "<group>"; };
 		436D186C2A91553C00E43BD1 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
+		438415262AC514EC0049463A /* ForkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkButton.swift; sourceTree = "<group>"; };
 		43849C672A9D50A400CFDCD2 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		43849C6A2A9D7F0800CFDCD2 /* TabLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLocationsViewModel.swift; sourceTree = "<group>"; };
 		43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMapViewModel.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			children = (
 				43F71A8B2ABD2C87009FA213 /* MapBalloonShape.swift */,
 				43BAFA9B2ABF84F000314F86 /* SpotAnnotation.swift */,
+				438415262AC514EC0049463A /* ForkButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			files = (
 				4304B0012A96B0CB0087F7E8 /* LocationActionButton.swift in Sources */,
 				43A3B6A52A95251200905D3A /* RoudedBackground.swift in Sources */,
+				438415272AC514EC0049463A /* ForkButton.swift in Sources */,
 				43A098912A90105D00B0942A /* AfterBuildApp.swift in Sources */,
 				43A3B6982A951EB500905D3A /* CustomModifiers.swift in Sources */,
 				43A098AA2A9018BC00B0942A /* TabProfileView.swift in Sources */,
