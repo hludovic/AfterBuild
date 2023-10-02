@@ -18,7 +18,9 @@ struct TabMapView: View {
             Map(position: $viewModel.position) {
                 ForEach(locationManager.locations, id: \.id) { location in
                     Annotation(location.name, coordinate: location.location.coordinate, anchor: .bottom) {
-                        SpotAnnotation(location: location)
+                        SpotAnnotation(
+                            location: location,
+                            number: viewModel.checkedInCount[location.id, default: 0])
                             .onTapGesture {
                                 locationManager.selectedLocation = location
                                 viewModel.isShowingDetailView = true
@@ -47,25 +49,30 @@ struct TabMapView: View {
             }
         }
         .onAppear {
-            if locationManager.locations.isEmpty {
-                viewModel.getLocations(for: locationManager)
-            }
+            viewModel.startupTasks(with: locationManager)
         }
-        .sheet(isPresented: $viewModel.isShowingDetailView) {
-            if let location = locationManager.selectedLocation {
-                NavigationStack {
-                    LocationDetailView(viewModel: LocationDetailViewModel(location: location))
-                        .toolbarTitleDisplayMode(.inline)
-                        .toolbar {
-                            Button {
-                                viewModel.isShowingDetailView =  false
-                            } label: {
-                                Text("Close")
+        .sheet(isPresented: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Is Presented@*/.constant(false)/*@END_MENU_TOKEN@*/, onDismiss: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=On Dismiss@*/{ }/*@END_MENU_TOKEN@*/, content: {
+            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
+        })
+
+        .sheet(
+            isPresented: $viewModel.isShowingDetailView,
+            onDismiss: { Task{ await viewModel.getCheckdedInCount(with: locationManager) } },
+            content: {
+                if let location = locationManager.selectedLocation {
+                    NavigationStack {
+                        LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+                            .toolbarTitleDisplayMode(.inline)
+                            .toolbar {
+                                Button {
+                                    viewModel.isShowingDetailView =  false
+                                } label: {
+                                    Text("Close")
+                                }
                             }
-                        }
+                    }
                 }
-            }
-        }
+            })
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
     }
 }

@@ -50,19 +50,42 @@ class CloudKitManager {
     func getCheckInProfiles(for locationID: CKRecord.ID) async throws -> [UserProfile] {
         let reference = CKRecord.Reference(recordID: locationID, action: .none)
         let predicate = NSPredicate(format: "isCheckedIn == %@", reference)
-        let querry = CKQuery(recordType: RecordType.profile, predicate: predicate)
-        let (results, _) = try await container.publicCloudDatabase.records(matching: querry)
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        let (results, _) = try await container.publicCloudDatabase.records(matching: query)
         let resultRecords = results.compactMap { try? $1.get() }
         return resultRecords.map(UserProfile.init)
     }
 
     func getUserProfilesChecked(in locations: [SpotLocation]) async throws -> [UserProfile] {
-        let locationsReference = locations.map { CKRecord.Reference(recordID: $0.id, action: .none) }
-        let predicate = NSPredicate(format: "\(UserProfile.kIsCheckedIn) in %@", locationsReference)
+        let locationReferences = locations.map { CKRecord.Reference(recordID: $0.id, action: .none) }
+        let predicate = NSPredicate(format: "\(UserProfile.kIsCheckedIn) in %@", locationReferences)
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let (results, cursor) = try await container.publicCloudDatabase.records(matching: query)
         if let cursor { print(cursor) }
         let usersRecord = results.compactMap { try? $1.get() }
         return usersRecord.map { UserProfile(record: $0) }
+    }
+
+    func getCheckdInProfilesCount(in locations: [SpotLocation]) async throws -> [CKRecord.ID: Int] {
+        let locationReferences = locations.map { location in CKRecord.Reference(recordID: location.id, action: .none) }
+        let predicate = NSPredicate(format: "\(UserProfile.kIsCheckedIn) in %@", locationReferences)
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        let desiredKeys = [UserProfile.kIsCheckedIn]
+        let (results, cursor) = try await container.publicCloudDatabase.records(matching: query, desiredKeys: desiredKeys)
+        if let cursor { print(cursor) }
+        let usersRecords = results.compactMap { try? $1.get() }
+        let userProfiles = usersRecords.map { UserProfile(record: $0) }
+
+        var result: [CKRecord.ID: Int] = [:]
+        for userProfile in userProfiles {
+            if let locationReference = userProfile.isCheckedIn {
+                if let count = result[locationReference.recordID] {
+                    result[locationReference.recordID] = count + 1
+                } else {
+                    result[locationReference.recordID] = 1
+                }
+            }
+        }
+        return result
     }
 }

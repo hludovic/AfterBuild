@@ -6,12 +6,14 @@
 //
 
 import _MapKit_SwiftUI
+import CloudKit
 
 final class TabMapViewModel: NSObject, ObservableObject {
     @Published var isShowingAlert: Bool = false
     @Published var isShowingDetailView: Bool = false
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var position: MapCameraPosition = .automatic
+    @Published var checkedInCount: [CKRecord.ID: Int] = [:]
     private var deviceLocationManager: CLLocationManager = CLLocationManager()
 
     override init() {
@@ -22,15 +24,31 @@ final class TabMapViewModel: NSObject, ObservableObject {
     func requestAllowOnceLocationPermission() {
         deviceLocationManager.requestLocation()
     }
-
-    func getLocations(for locationManager: LocationManager) {
+    
+    func startupTasks(with locationManager: LocationManager) {
         Task {
-            do {
-                let locationsResult = try await CloudKitManager.shared.getLocations()
-                await MainActor.run { locationManager.locations = locationsResult }
-            } catch {
-                await MainActor.run{ alertItem = AlertContext.unableToGetLocations }
+            if locationManager.locations.isEmpty {
+                await getLocations(for: locationManager)
             }
+            await getCheckdedInCount(with: locationManager)
+        }
+    }
+
+    func getLocations(for locationManager: LocationManager) async {
+        do {
+            let locationsResult = try await CloudKitManager.shared.getLocations()
+            await MainActor.run { locationManager.locations = locationsResult }
+        } catch {
+            await MainActor.run{ alertItem = AlertContext.unableToGetLocations }
+        }
+    }
+
+    func getCheckdedInCount(with locationManader: LocationManager) async {
+        do {
+            let result = try await CloudKitManager.shared.getCheckdInProfilesCount(in: locationManader.locations)
+            await MainActor.run { checkedInCount = result }
+        } catch {
+            print("ERROR")
         }
     }
 }
