@@ -25,7 +25,8 @@ struct TabLocationsView: View {
                     }
                 }
             }
-            .task { await viewModel.getCheckedInProfiles() }
+            .task { await viewModel.getCheckedInProfiles(in: locationManager.locations) }
+            .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
             .toolbarBackground(.visible, for: .tabBar)
             .navigationTitle("Spots")
         }
