@@ -51,10 +51,6 @@ struct TabMapView: View {
         .onAppear {
             viewModel.startupTasks(with: locationManager)
         }
-        .sheet(isPresented: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Is Presented@*/.constant(false)/*@END_MENU_TOKEN@*/, onDismiss: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=On Dismiss@*/{ }/*@END_MENU_TOKEN@*/, content: {
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Sheet Content")/*@END_MENU_TOKEN@*/
-        })
-
         .sheet(
             isPresented: $viewModel.isShowingDetailView,
             onDismiss: { Task{ await viewModel.getCheckdedInCount(with: locationManager) } },
