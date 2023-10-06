@@ -62,7 +62,7 @@ struct LocationDetailView: View {
                 Text("Who's There")
                     .fontWeight(.bold)
                     .font(.title2)
-                
+
                 ZStack {
                     if viewModel.checkedInProfiles.isEmpty {
                         Text("Nobody's here ☹️")
@@ -101,7 +101,7 @@ struct LocationDetailView: View {
                 .zIndex(2)
             }
         }
-        .task { 
+        .task {
             await viewModel.getCheckInStatus()
             await viewModel.getCheckedInProfiles()
         }

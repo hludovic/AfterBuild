@@ -44,12 +44,9 @@ final class TabMapViewModel: NSObject, ObservableObject {
     }
 
     func getCheckdedInCount(with locationManader: LocationManager) async {
-        do {
-            let result = try await CloudKitManager.shared.getCheckdInProfilesCount(in: locationManader.locations)
-            await MainActor.run { checkedInCount = result }
-        } catch {
-            print("ERROR")
-        }
+        let result = try? await CloudKitManager.shared.getCheckdInProfilesCount(in: locationManader.locations)
+        guard let result else { return print("Unable tou get Checked-In profiles Count") }
+        await MainActor.run { checkedInCount = result }
     }
 }
 

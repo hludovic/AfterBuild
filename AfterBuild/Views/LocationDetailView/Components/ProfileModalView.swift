@@ -40,7 +40,6 @@ struct ProfileModalView: View {
                 } label: {
                     DismissButton()
                 }
-
             }
 
             Image(uiImage: profile.getAvatar())

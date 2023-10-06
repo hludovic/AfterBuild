@@ -11,14 +11,14 @@ struct OnboardInfoView: View {
     var imageName: String
     var title: String
     var description: String
-
+    
     var body: some View {
         HStack(spacing: 26) {
             Image(systemName: imageName)
                 .resizable()
                 .frame(width: 50, height: 50)
                 .foregroundColor(.brandPrimary)
-
+            
             VStack(alignment: .leading, spacing: 3) {
                 Text(title).bold()
                 Text(description)

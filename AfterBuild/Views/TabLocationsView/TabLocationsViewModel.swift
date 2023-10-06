@@ -8,13 +8,11 @@
 import CloudKit
 
 final class TabLocationsViewModel: ObservableObject {
-    @Published var isShowingAlert: Bool = false
-    @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var checkedInProfiles: [CKRecord.ID: [UserProfile]] = [:]
 
     func getCheckedInProfiles(in locations: [SpotLocation]) async {
         let users: [UserProfile]? = try? await CloudKitManager.shared.getUserProfilesChecked(in: locations)
-        guard let users else { return await MainActor.run{ alertItem = AlertContext.unableToGetUserProfilesChecked } }
+        guard let users else { return print("Unable to get Userprofiles Checked-In") }
         await MainActor.run { checkedInProfiles = sortByLocations(users: users) }
     }
 

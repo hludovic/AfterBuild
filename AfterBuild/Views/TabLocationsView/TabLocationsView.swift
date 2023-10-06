@@ -10,7 +10,7 @@ import SwiftUI
 struct TabLocationsView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @ObservedObject var viewModel = TabLocationsViewModel()
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -26,7 +26,6 @@ struct TabLocationsView: View {
                 }
             }
             .task { await viewModel.getCheckedInProfiles(in: locationManager.locations) }
-            .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
             .toolbarBackground(.visible, for: .tabBar)
             .navigationTitle("Spots")
         }
@@ -46,7 +45,7 @@ struct TabLocationsView: View {
         locaitionManager.locations = locations
         return locaitionManager
     }
-
+    
     return TabLocationsView()
         .environmentObject(previewLocationManager())
 }

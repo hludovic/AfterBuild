@@ -13,6 +13,7 @@ struct AlertItem {
 }
 
 struct AlertContext {
+    
     // MARK: - TabMapView Errors
     static let unableToGetLocations = AlertItem(
         title: Text("Location Error"),
@@ -25,6 +26,7 @@ struct AlertContext {
     static let locationDenied = AlertItem(
         title: Text("Location Denied"),
         message: Text("AfterBuild does not have permition to access your location. Check your phone settings."))
+
 
     // MARK: - TabProfile Errors
     static let invalidProfile = AlertItem(
@@ -55,6 +57,7 @@ struct AlertContext {
         title: Text("Profile Update Failed"),
         message: Text("We were unable to update your profile at this time.\nPlease try again later."))
 
+
     // MARK: - LocationDetail Errors
     static let wrongPhoneNumber = AlertItem(
         title: Text("Invalid Phone Number"),
@@ -71,9 +74,4 @@ struct AlertContext {
     static let unableToGetCheckedInProfiles = AlertItem(
         title: Text("Server Error"),
         message: Text("We are unable to get users checked into this location at this time.\nPlease try again"))
-
-    // MARK: - TabLocations Errors
-    static let unableToGetUserProfilesChecked = AlertItem(
-        title: Text("Server Error"),
-        message: Text("We are unable to get users checked at this time.\nPlease try again"))
 }

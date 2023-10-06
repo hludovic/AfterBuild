@@ -17,6 +17,7 @@ struct LogoView: View {
             .frame(width: frameWidth)
     }
 }
+
 #Preview {
     LogoView(frameWidth: 250)
 }

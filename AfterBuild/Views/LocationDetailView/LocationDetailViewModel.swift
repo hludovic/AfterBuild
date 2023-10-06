@@ -39,7 +39,7 @@ final class LocationDetailViewModel: ObservableObject {
     func getCheckInStatus() async {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else{ return }
         let userProfileRecord = try? await CloudKitManager.shared.fetchRecord(with: profileRecordID)
-        guard let userProfileRecord else { 
+        guard let userProfileRecord else {
             return await MainActor.run { alertItem = AlertContext.unableToGetCheckInStatus }
         }
         guard let reference = userProfileRecord[UserProfile.kIsCheckedIn] as? CKRecord.Reference else {
@@ -49,11 +49,11 @@ final class LocationDetailViewModel: ObservableObject {
     }
 
     func updateCheckInStatus(to checkInStatus: CheckInStatus) async {
-        guard let userProfileRecordID = CloudKitManager.shared.profileRecordID else { 
+        guard let userProfileRecordID = CloudKitManager.shared.profileRecordID else {
             return await MainActor.run { alertItem = AlertContext.getProfileFailure }
         }
         let profileRecord: CKRecord? = try? await CloudKitManager.shared.fetchRecord(with: userProfileRecordID)
-        guard let profileRecord else { 
+        guard let profileRecord else {
             return await MainActor.run { alertItem = AlertContext.unableToCheckInOut }
         }
 
@@ -78,7 +78,7 @@ final class LocationDetailViewModel: ObservableObject {
             isCheckedIn = checkInStatus == .checkedIn
         }
     }
-    
+
     func getCheckedInProfiles() async {
         await showLoadingView()
         do {

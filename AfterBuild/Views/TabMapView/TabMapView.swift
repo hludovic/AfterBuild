@@ -21,10 +21,10 @@ struct TabMapView: View {
                         SpotAnnotation(
                             location: location,
                             number: viewModel.checkedInCount[location.id, default: 0])
-                            .onTapGesture {
-                                locationManager.selectedLocation = location
-                                viewModel.isShowingDetailView = true
-                            }
+                        .onTapGesture {
+                            locationManager.selectedLocation = location
+                            viewModel.isShowingDetailView = true
+                        }
                     }
                 }
                 UserAnnotation()
@@ -40,11 +40,8 @@ struct TabMapView: View {
                 .modifier(LocationButtonStyle())
                 .padding()
 
-                Button {
-                    withAnimation { viewModel.position = .automatic }
-                } label: {
-                    ForkButton()
-                }
+                Button(action: { withAnimation { viewModel.position = .automatic } }, label: { ForkButton() })
+
                 Spacer()
             }
         }
@@ -59,16 +56,11 @@ struct TabMapView: View {
                     NavigationStack {
                         LocationDetailView(viewModel: LocationDetailViewModel(location: location))
                             .toolbarTitleDisplayMode(.inline)
-                            .toolbar {
-                                Button {
-                                    viewModel.isShowingDetailView =  false
-                                } label: {
-                                    Text("Close")
-                                }
-                            }
+                            .toolbar { Button("Close") { viewModel.isShowingDetailView =  false } }
                     }
                 }
-            })
+            }
+        )
         .alertMessage(item: viewModel.alertItem, isPresented: $viewModel.isShowingAlert)
     }
 }
