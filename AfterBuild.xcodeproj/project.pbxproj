@@ -85,6 +85,7 @@
 		43849C6C2A9D7FA300CFDCD2 /* TabMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMapViewModel.swift; sourceTree = "<group>"; };
 		43849C6E2A9D899300CFDCD2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		43875CB52AA45BC7000A7519 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		438F862D2AD3758B00DEE98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		439554AB2A96B8AF0050B82B /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		439554AD2A96CEB70050B82B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		43A0988D2A90105D00B0942A /* AfterBuild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AfterBuild.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +240,7 @@
 		43A0988F2A90105D00B0942A /* AfterBuild */ = {
 			isa = PBXGroup;
 			children = (
+				438F862D2AD3758B00DEE98A /* Info.plist */,
 				43A0989E2A90107B00B0942A /* AfterBuild.entitlements */,
 				43A098902A90105D00B0942A /* AfterBuildApp.swift */,
 				43A098942A90105D00B0942A /* Assets.xcassets */,
@@ -593,10 +595,10 @@
 				DEVELOPMENT_TEAM = W8A2PVHCN3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AfterBuild/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AfterBuild uses your location to show where you are in relation to your friends and food.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -627,10 +629,10 @@
 				DEVELOPMENT_TEAM = W8A2PVHCN3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AfterBuild/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AfterBuild uses your location to show where you are in relation to your friends and food.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
