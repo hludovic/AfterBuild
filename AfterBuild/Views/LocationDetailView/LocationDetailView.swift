@@ -45,6 +45,7 @@ struct LocationDetailView: View {
                             Button {
                                 Task {
                                     await viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
+                                    hapticFeedback()
                                 }
                             } label: {
                                 withAnimation {

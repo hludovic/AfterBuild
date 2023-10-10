@@ -58,7 +58,10 @@ struct TabProfileView: View {
                         
                         if viewModel.isCheckedIn {
                             Button {
-                                Task { await viewModel.checkOutStatus() }
+                                Task {
+                                    await viewModel.checkOutStatus()
+                                    hapticFeedback()
+                                }
                             } label: {
                                 Label("Ceck Out", systemImage: "mappin.and.ellipse")
                             }
