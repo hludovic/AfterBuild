@@ -152,6 +152,17 @@
 			path = AppTabView;
 			sourceTree = "<group>";
 		};
+		43355E892ADE6E000006F9A7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				438F862D2AD3758B00DEE98A /* Info.plist */,
+				43A0989E2A90107B00B0942A /* AfterBuild.entitlements */,
+				43A098942A90105D00B0942A /* Assets.xcassets */,
+				43A098962A90105D00B0942A /* Preview Content */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4351C2C22AA787B000592A5E /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,14 +251,11 @@
 		43A0988F2A90105D00B0942A /* AfterBuild */ = {
 			isa = PBXGroup;
 			children = (
-				438F862D2AD3758B00DEE98A /* Info.plist */,
-				43A0989E2A90107B00B0942A /* AfterBuild.entitlements */,
 				43A098902A90105D00B0942A /* AfterBuildApp.swift */,
-				43A098942A90105D00B0942A /* Assets.xcassets */,
 				4304AFF82A9699B20087F7E8 /* Model */,
 				439554AA2A96B87E0050B82B /* Utilities */,
 				43A3B69E2A9523A500905D3A /* Views */,
-				43A098962A90105D00B0942A /* Preview Content */,
+				43355E892ADE6E000006F9A7 /* Resources */,
 			);
 			path = AfterBuild;
 			sourceTree = "<group>";
