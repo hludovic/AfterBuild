@@ -16,6 +16,11 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     @Published var isShowingAlert: Bool = false
     @Published var isShowingProfileModal: Bool = false
+    @Published var profileModal: UserProfile? = nil {
+        didSet {
+            if profileModal != nil { isShowingProfileModal = true }
+        }
+    }
     @Published var isLoading: Bool = false
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var location: SpotLocation

@@ -77,7 +77,7 @@ struct LocationDetailView: View {
                                 ForEach(viewModel.checkedInProfiles) { profile in
                                     FirstNameAvatarView(profile: profile)
                                         .onTapGesture {
-                                            withAnimation {  viewModel.isShowingProfileModal = true }
+                                            withAnimation {  viewModel.profileModal = profile }
                                         }
                                 }
                             }
@@ -96,7 +96,7 @@ struct LocationDetailView: View {
                     .zIndex(1)
                 ProfileModalView(
                     isShowing: $viewModel.isShowingProfileModal,
-                    profile: UserProfile(record: MockData.profile)
+                    profile: viewModel.profileModal!
                 )
                 .transition(.opacity.combined(with: .slide))
                 .zIndex(2)
@@ -112,7 +112,7 @@ struct LocationDetailView: View {
 }
 
 #Preview {
-    let location = SpotLocation(record: MockData.location)
+    let location = SpotLocation(record: MockData.chipotle)
 
     return NavigationStack {
         LocationDetailView(viewModel: LocationDetailViewModel(location: location))
