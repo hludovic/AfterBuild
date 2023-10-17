@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import CloudKit
 
 struct SpotAnnotation: View {
     var location: SpotLocation
-    var number: Int
+    var viewModel: TabMapViewModel
 
     var body: some View {
         ZStack{
@@ -21,8 +22,8 @@ struct SpotAnnotation: View {
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
                 .offset(y: -11)
-            if number > 0 {
-                Text("\(min(number, 99))")
+            if viewModel.checkedInCount[location.id, default: 0] > 0 {
+                Text("\(min(viewModel.checkedInCount[location.id, default: 0], 99))")
                     .font(.system(size: 11, weight: .bold))
                     .frame(width: 26, height: 18)
                     .background(Color.afterBuildRed)
@@ -35,5 +36,7 @@ struct SpotAnnotation: View {
 }
 
 #Preview {
-    SpotAnnotation(location: SpotLocation(record: MockData.location), number: 38)
+    let viewModel = TabMapViewModel()
+    viewModel.checkedInCount = [CKRecord.ID(recordName: "7C8D0FCB-1B68-491E-A738-8042C098A673"): 30]
+    return SpotAnnotation(location: SpotLocation(record: MockData.chipotle), viewModel: viewModel)
 }

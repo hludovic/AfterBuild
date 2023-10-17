@@ -7,9 +7,10 @@
 
 import CloudKit
 import SwiftUI
+import Observation
 
-final class TabLocationsViewModel: ObservableObject {
-    @Published var checkedInProfiles: [CKRecord.ID: [UserProfile]] = [:]
+@Observable final class TabLocationsViewModel {
+    var checkedInProfiles: [CKRecord.ID: [UserProfile]] = [:]
 
     func getCheckedInProfiles(in locations: [SpotLocation]) async {
         let users: [UserProfile]? = try? await CloudKitManager.shared.getUserProfilesChecked(in: locations)

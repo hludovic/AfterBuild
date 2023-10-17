@@ -7,13 +7,14 @@
 
 import _MapKit_SwiftUI
 import CloudKit
+import Observation
 
-final class TabMapViewModel: NSObject, ObservableObject {
-    @Published var isShowingAlert: Bool = false
-    @Published var isShowingDetailView: Bool = false
-    @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
-    @Published var position: MapCameraPosition = .automatic
-    @Published var checkedInCount: [CKRecord.ID: Int] = [:]
+@Observable final class TabMapViewModel: NSObject {
+    var isShowingAlert: Bool = false
+    var isShowingDetailView: Bool = false
+    var alertItem: AlertItem? { didSet { isShowingAlert = true } }
+    var position: MapCameraPosition = .automatic
+    var checkedInCount: [CKRecord.ID: Int] = [:]
     private var deviceLocationManager: CLLocationManager = CLLocationManager()
 
     override init() {

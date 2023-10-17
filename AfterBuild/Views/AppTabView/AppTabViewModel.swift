@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Observation
 
-final class AppTabViewModel: ObservableObject {
-    @Published var isShowingOnboardView: Bool = false
+@Observable final class AppTabViewModel {
+    var isShowingOnboardView: Bool = false
     var hasSeenOnboardView: Bool {
         return UserDefaults.standard.bool(forKey: StorageKey.hasSeenOnboardView)
     }

@@ -14,7 +14,7 @@ struct AfterBuildApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView()
-                .environmentObject(locationManager)
+                .environment(locationManager)
         }
     }
 }

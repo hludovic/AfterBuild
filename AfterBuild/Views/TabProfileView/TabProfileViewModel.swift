@@ -7,20 +7,20 @@
 
 import CloudKit
 import SwiftUI
+import Observation
 
-
-final class TabProfileViewModel: ObservableObject {
+@Observable final class TabProfileViewModel {
     enum Context { case update, create }
-    @Published var firstName: String = ""
-    @Published var lastName: String = ""
-    @Published var companyName: String = ""
-    @Published var bio: String = ""
-    @Published var avatar: UIImage = PlaceholderImage.avatar
-    @Published var isShowingPhotoPicker: Bool = false
-    @Published var isShowingAlert: Bool = false
-    @Published var isLoading: Bool = false
-    @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
-    @Published var isCheckedIn: Bool = false
+    var firstName: String = ""
+    var lastName: String = ""
+    var companyName: String = ""
+    var bio: String = ""
+    var avatar: UIImage = PlaceholderImage.avatar
+    var isShowingPhotoPicker: Bool = false
+    var isShowingAlert: Bool = false
+    var isLoading: Bool = false
+    var alertItem: AlertItem? { didSet { isShowingAlert = true } }
+    var isCheckedIn: Bool = false
     var profileContext: Context = .create
     private var existingProfileRecord: CKRecord? { didSet { profileContext = .update } }
 

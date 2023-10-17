@@ -16,8 +16,8 @@ struct TabProfileView: View {
         case bio
     }
 
-    @StateObject private var viewModel = TabProfileViewModel()
-    @FocusState var focusedField: Field?
+    @State private var viewModel = TabProfileViewModel()
+    @FocusState private var focusedField: Field?
 
     var body: some View {
         ZStack {

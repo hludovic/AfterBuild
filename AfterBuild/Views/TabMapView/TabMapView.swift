@@ -10,22 +10,21 @@ import SwiftUI
 import MapKit
 
 struct TabMapView: View {
-    @EnvironmentObject private var locationManager: LocationManager
-    @StateObject var viewModel = TabMapViewModel()
+    @Environment(LocationManager.self) private var locationManager
+    @State private var viewModel = TabMapViewModel()
 
     var body: some View {
         ZStack(alignment: .bottom) {
             Map(position: $viewModel.position) {
                 ForEach(locationManager.locations, id: \.id) { location in
                     Annotation(location.name, coordinate: location.location.coordinate, anchor: .bottom) {
-                        SpotAnnotation(
-                            location: location,
-                            number: viewModel.checkedInCount[location.id, default: 0])
+                        SpotAnnotation(location: location, viewModel: viewModel)
                         .onTapGesture {
                             locationManager.selectedLocation = location
                             viewModel.isShowingDetailView = true
                         }
                     }
+                    .annotationTitles(.visible)
                 }
                 UserAnnotation()
             }
@@ -67,5 +66,5 @@ struct TabMapView: View {
 
 #Preview {
     TabMapView()
-        .environmentObject(LocationManager())
+        .environment(LocationManager())
 }

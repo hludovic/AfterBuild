@@ -8,20 +8,20 @@
 import SwiftUI
 import MapKit
 import CloudKit
+import Observation
 
-final class LocationDetailViewModel: ObservableObject {
+@Observable final class LocationDetailViewModel {
     enum CheckInStatus { case checkedIn, checkedOut }
-    @Published var checkedInProfiles: [UserProfile] = []
-    @Published var isCheckedIn: Bool = false
-    @Published var alertItem: AlertItem? { didSet { isShowingAlert = true } }
-    @Published var isShowingAlert: Bool = false
-    @Published var isShowingProfileModal: Bool = false
-    @Published var profileModal: UserProfile? = nil {
-        didSet {
-            if profileModal != nil { isShowingProfileModal = true }
-        }
+    var checkedInProfiles: [UserProfile] = []
+    var isCheckedIn: Bool = false
+    var alertItem: AlertItem? { didSet { isShowingAlert = true } }
+    var isShowingAlert: Bool = false
+    var isShowingProfileModal: Bool = false
+    var isLoading: Bool = false
+    var profileModal: UserProfile? = nil {
+        didSet { if profileModal != nil { isShowingProfileModal = true } }
     }
-    @Published var isLoading: Bool = false
+
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     var location: SpotLocation
 

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct TabLocationsView: View {
-    @EnvironmentObject private var locationManager: LocationManager
-    @ObservedObject var viewModel = TabLocationsViewModel()
-    
+    @Environment(LocationManager.self) private var locationManager
+    @State private var viewModel = TabLocationsViewModel()
+
     var body: some View {
         NavigationStack {
             List {
@@ -45,8 +45,8 @@ struct TabLocationsView: View {
         locaitionManager.locations = locations
         return locaitionManager
     }
-    
+
     return TabLocationsView()
-        .environmentObject(previewLocationManager())
+        .environment(previewLocationManager())
 }
 

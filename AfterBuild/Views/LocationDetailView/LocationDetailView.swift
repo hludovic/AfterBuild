@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationDetailView: View {
-    @ObservedObject var viewModel: LocationDetailViewModel
+    @State var viewModel: LocationDetailViewModel
     @State var isAnimate: Bool = false
 
     var body: some View {

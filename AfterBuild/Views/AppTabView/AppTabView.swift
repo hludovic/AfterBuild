@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppTabView: View {
-    @StateObject var viewModel: AppTabViewModel = AppTabViewModel()
+    @State var viewModel: AppTabViewModel = AppTabViewModel()
 
     var body: some View {
         TabView {
@@ -32,5 +32,5 @@ struct AppTabView: View {
 
 #Preview {
     AppTabView(viewModel: AppTabViewModel())
-        .environmentObject(LocationManager())
+        .environment(LocationManager())
 }

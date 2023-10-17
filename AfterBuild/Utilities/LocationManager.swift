@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Observation
 
-final class LocationManager: ObservableObject {
-    @Published var locations: [SpotLocation] = []
+@Observable final class LocationManager {
+    var locations: [SpotLocation] = []
     var selectedLocation: SpotLocation?
 }
