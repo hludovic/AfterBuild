@@ -60,7 +60,7 @@ struct LocationDetailView: View {
                 }
                 .padding(.horizontal)
 
-                Text("Who's There")
+                Text("Who's There ?")
                     .fontWeight(.bold)
                     .font(.title2)
 
@@ -111,10 +111,21 @@ struct LocationDetailView: View {
     }
 }
 
-#Preview {
-    let location = SpotLocation(record: MockData.chipotle)
 
-    return NavigationStack {
-        LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+#Preview("Default") {
+    LocationDetailView(viewModel: LocationDetailViewModel(location: SpotLocation(record: MockData.chipotle)))
+}
+
+#Preview("Extra Large") {
+    LocationDetailView(viewModel: LocationDetailViewModel(location: SpotLocation(record: MockData.chipotle)))
+        .environment(\.dynamicTypeSize, .xxLarge)
+        .preferredColorScheme(.dark)
+}
+
+#Preview {
+    NavigationStack {
+        LocationDetailView(viewModel: LocationDetailViewModel(location: SpotLocation(record: MockData.chipotle)))
+            .environment(\.dynamicTypeSize, .accessibility5)
     }
 }
+

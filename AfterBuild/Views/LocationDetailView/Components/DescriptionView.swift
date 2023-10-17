@@ -12,9 +12,8 @@ struct DescriptionView: View {
 
     var body: some View {
         Text(description)
-            .lineLimit(3)
             .minimumScaleFactor(0.75)
-            .frame(height: 70)
+            .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal)
     }
 }

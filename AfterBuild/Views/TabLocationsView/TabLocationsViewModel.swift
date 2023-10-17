@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import SwiftUI
 
 final class TabLocationsViewModel: ObservableObject {
     @Published var checkedInProfiles: [CKRecord.ID: [UserProfile]] = [:]
@@ -14,6 +15,16 @@ final class TabLocationsViewModel: ObservableObject {
         let users: [UserProfile]? = try? await CloudKitManager.shared.getUserProfilesChecked(in: locations)
         guard let users else { return print("Unable to get Userprofiles Checked-In") }
         await MainActor.run { checkedInProfiles = sortByLocations(users: users) }
+    }
+
+    @ViewBuilder func createLocationDetailView(for location: SpotLocation, in sizeType: DynamicTypeSize) -> some View {
+        if sizeType > .accessibility3 {
+            ScrollView {
+                LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+            }
+        } else {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+        }
     }
 
     private func sortByLocations(users: [UserProfile]) -> [CKRecord.ID : [UserProfile]] {
@@ -25,5 +36,4 @@ final class TabLocationsViewModel: ObservableObject {
         }
         return result
     }
-
 }
