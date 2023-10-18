@@ -29,6 +29,9 @@ struct TabLocationsView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .navigationTitle("Spots")
         }
+        .refreshable {
+            await viewModel.getCheckedInProfiles(in: locationManager.locations)
+        }
     }
 }
 
