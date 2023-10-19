@@ -24,7 +24,6 @@ struct TabProfileView: View {
             VStack {
                 ZStack {
                     RoudedBackground()
-
                     HStack(spacing: 16) {
                         ZStack {
                             AvatarView(size: 84, image: viewModel.avatar)
@@ -53,15 +52,11 @@ struct TabProfileView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     HStack{
                         CharactersRemainView(currentCount: viewModel.bio.count)
-
+                            .padding(.vertical, 3)
                         Spacer()
-                        
                         if viewModel.isCheckedIn {
                             Button {
-                                Task {
-                                    await viewModel.checkOutStatus()
-                                    hapticFeedback()
-                                }
+                                Task { await viewModel.checkOutStatus() }
                             } label: {
                                 Label("Ceck Out", systemImage: "mappin.and.ellipse")
                             }

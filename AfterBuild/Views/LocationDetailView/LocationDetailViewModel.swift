@@ -79,9 +79,8 @@ import Observation
         case .checkedOut:
             await MainActor.run { checkedInProfiles.removeAll { $0.id == userProfile.id } }
         }
-        await MainActor.run {
-            isCheckedIn = checkInStatus == .checkedIn
-        }
+        launchHapticFeedback()
+        await MainActor.run {  isCheckedIn = checkInStatus == .checkedIn }
     }
 
     func getCheckedInProfiles() async {
@@ -95,6 +94,11 @@ import Observation
             await MainActor.run { alertItem = AlertContext.unableToGetCheckedInProfiles }
 
         }
+    }
+
+    func launchHapticFeedback() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 
     @MainActor private func showLoadingView() { isLoading = true}

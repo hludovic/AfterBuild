@@ -61,7 +61,7 @@ import Observation
     }
 
     func checkOutStatus() async {
-        guard let userProfileID = CloudKitManager.shared.profileRecordID else { 
+        guard let userProfileID = CloudKitManager.shared.profileRecordID else {
             return alertItem = AlertContext.getProfileFailure
         }
         let userRecord = try? await CloudKitManager.shared.fetchRecord(with: userProfileID)
@@ -73,6 +73,7 @@ import Observation
         guard savedProfile != nil else {
             return await MainActor.run { alertItem = AlertContext.unableToCheckInOut }
         }
+        launchHapticFeedback()
         await MainActor.run { isCheckedIn = false }
     }
 
@@ -131,6 +132,11 @@ import Observation
               bio.count <= 100,
               avatar != PlaceholderImage.avatar else { return false }
         return true
+    }
+
+    func launchHapticFeedback() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 
     @MainActor private func showLoadingView() { isLoading = true}

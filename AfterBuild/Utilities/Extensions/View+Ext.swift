@@ -14,9 +14,4 @@ extension View {
             } message: { item.message }
         } else { self }
     }
-
-    func hapticFeedback() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-    }
 }
