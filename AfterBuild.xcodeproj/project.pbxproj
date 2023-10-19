@@ -19,6 +19,7 @@
 		431407292A97E3C1005B48BF /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431407282A97E3C1005B48BF /* CKRecord+Ext.swift */; };
 		431C6DF12AAFF52E006ECCED /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C6DF02AAFF52E006ECCED /* LocationDetailViewModel.swift */; };
 		432635012AC5347D0045358F /* AppTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432635002AC5347D0045358F /* AppTabViewModel.swift */; };
+		4342E3A52AE0F50D007F26D1 /* CheckOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342E3A42AE0F50D007F26D1 /* CheckOutButton.swift */; };
 		4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */; };
 		4351C2C52AA7885200592A5E /* OnboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2C42AA7885200592A5E /* OnboardInfoView.swift */; };
 		4351C2CB2AA78B2C00592A5E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */; };
@@ -71,6 +72,7 @@
 		431407282A97E3C1005B48BF /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 		431C6DF02AAFF52E006ECCED /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		432635002AC5347D0045358F /* AppTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabViewModel.swift; sourceTree = "<group>"; };
+		4342E3A42AE0F50D007F26D1 /* CheckOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutButton.swift; sourceTree = "<group>"; };
 		4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
 		4351C2C42AA7885200592A5E /* OnboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardInfoView.swift; sourceTree = "<group>"; };
 		4351C2CA2AA78B2C00592A5E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				43A3B6A82A95254A00905D3A /* CharactersRemainView.swift */,
 				43A3B6A42A95251200905D3A /* RoudedBackground.swift */,
 				4384152A2AC52D730049463A /* ProfileNameStyle.swift */,
+				4342E3A42AE0F50D007F26D1 /* CheckOutButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				4345ADFB2AA28B9B00900B5D /* CKAsset+Ext.swift in Sources */,
 				43BAFA9C2ABF84F000314F86 /* SpotAnnotation.swift in Sources */,
 				43A3B69A2A951F0800905D3A /* View+Ext.swift in Sources */,
+				4342E3A52AE0F50D007F26D1 /* CheckOutButton.swift in Sources */,
 				43F71A8C2ABD2C87009FA213 /* MapBalloonShape.swift in Sources */,
 				438415292AC52CC60049463A /* LocationButtonStyle.swift in Sources */,
 				43A3B6A72A95253500905D3A /* EditImage.swift in Sources */,

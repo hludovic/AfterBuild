@@ -52,20 +52,13 @@ struct TabProfileView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     HStack{
                         CharactersRemainView(currentCount: viewModel.bio.count)
-                            .padding(.vertical, 3)
                         Spacer()
                         if viewModel.isCheckedIn {
                             Button {
                                 Task { await viewModel.checkOutStatus() }
                             } label: {
-                                Label("Ceck Out", systemImage: "mappin.and.ellipse")
+                                CheckOutButton()
                             }
-                            .foregroundStyle(Color.white)
-                            .font(.system(size: 12, weight: .semibold))
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 10)
-                            .background(Color.afterBuildRed)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                     }
 
