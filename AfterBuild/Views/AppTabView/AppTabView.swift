@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppTabView: View {
-    @State var viewModel: AppTabViewModel = AppTabViewModel()
+    @StateObject var viewModel: AppTabViewModel = AppTabViewModel()
 
     var body: some View {
         TabView {
