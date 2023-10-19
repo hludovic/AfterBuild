@@ -48,13 +48,12 @@ struct LocationDetailView: View {
                                     hapticFeedback()
                                 }
                             } label: {
-                                withAnimation {
-                                    LocationActionButton(
-                                        color: viewModel.isCheckedIn ? .afterBuildRed : .brandPrimary,
-                                        imageName: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark"
-                                    )
-                                }
+                                LocationActionButton(
+                                    color: viewModel.isCheckedIn ? .afterBuildRed : .brandPrimary,
+                                    imageName: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark"
+                                )
                             }
+                            .animation(.easeIn, value: viewModel.isCheckedIn)
                         }
                     }
                 }
@@ -77,7 +76,7 @@ struct LocationDetailView: View {
                                 ForEach(viewModel.checkedInProfiles) { profile in
                                     FirstNameAvatarView(profile: profile)
                                         .onTapGesture {
-                                            withAnimation {  viewModel.profileModal = profile }
+                                            withAnimation(.easeIn(duration: 0.2)) { viewModel.profileModal = profile }
                                         }
                                 }
                             }
@@ -92,8 +91,8 @@ struct LocationDetailView: View {
                 Color(uiColor: .systemBackground)
                     .ignoresSafeArea()
                     .opacity(0.9)
-                    .transition(.opacity)
                     .zIndex(1)
+                    .transition(.opacity)
                 ProfileModalView(
                     isShowing: $viewModel.isShowingProfileModal,
                     profile: viewModel.profileModal!

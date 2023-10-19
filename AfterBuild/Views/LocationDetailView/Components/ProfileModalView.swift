@@ -36,7 +36,7 @@ struct ProfileModalView: View {
             .cornerRadius(16)
             .overlay(alignment: .topTrailing) {
                 Button {
-                    withAnimation { isShowing = false }
+                    withAnimation(.easeInOut(duration: 0.2)) { isShowing = false }
                 } label: {
                     DismissButton()
                 }
