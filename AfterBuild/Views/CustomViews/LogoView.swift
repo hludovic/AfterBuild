@@ -11,7 +11,7 @@ struct LogoView: View {
     var frameWidth: CGFloat
 
     var body: some View {
-        Image(.ddgMapLogo)
+        Image(.cleanLogo)
             .resizable()
             .scaledToFit()
             .frame(width: frameWidth)

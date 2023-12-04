@@ -15,6 +15,7 @@ import Observation
     var alertItem: AlertItem? { didSet { isShowingAlert = true } }
     var position: MapCameraPosition = .automatic
     var checkedInCount: [CKRecord.ID: Int] = [:]
+    var displayLocationPermissionButton: Bool = true
     private var deviceLocationManager: CLLocationManager = CLLocationManager()
 
     override init() {
@@ -23,10 +24,11 @@ import Observation
     }
 
     func requestAllowOnceLocationPermission() {
-        deviceLocationManager.requestLocation()
+        deviceLocationManager.requestWhenInUseAuthorization()
     }
     
     func startupTasks(with locationManager: LocationManager) {
+        checkLocationPermissions()
         Task {
             if locationManager.locations.isEmpty {
                 await getLocations(for: locationManager)
@@ -49,11 +51,34 @@ import Observation
         guard let result else { return print("Unable tou get Checked-In profiles Count") }
         await MainActor.run { checkedInCount = result }
     }
+
+    func checkLocationPermissions() {
+        switch deviceLocationManager.authorizationStatus {
+        case .notDetermined:
+            displayLocationPermissionButton = true
+        case .restricted:
+            displayLocationPermissionButton = true
+        case .denied:
+            displayLocationPermissionButton = true
+        case .authorizedAlways:
+            displayLocationPermissionButton = false
+        case .authorizedWhenInUse:
+            displayLocationPermissionButton = false
+        case .authorized:
+            displayLocationPermissionButton = false
+        @unknown default:
+            displayLocationPermissionButton = false
+        }
+    }
 }
 
 extension TabMapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         position = .userLocation(followsHeading: true, fallback: .automatic)
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationPermissions()
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

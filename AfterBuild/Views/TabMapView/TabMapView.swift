@@ -29,19 +29,25 @@ struct TabMapView: View {
                 UserAnnotation()
             }
             .mapControls {
-                MapCompass()
-                MapScaleView()
+                if !viewModel.displayLocationPermissionButton {
+                    MapUserLocationButton()
+                    MapCompass()
+                    MapScaleView()
+                }
             }
             HStack {
-                LocationButton(.currentLocation) {
-                    viewModel.requestAllowOnceLocationPermission()
-                }
-                .modifier(LocationButtonStyle())
-                .padding()
-
-                Button(action: { withAnimation { viewModel.position = .automatic } }, label: { ForkButton() })
-
                 Spacer()
+                if viewModel.displayLocationPermissionButton {
+                    LocationButton(.currentLocation) {
+                        viewModel.requestAllowOnceLocationPermission()
+                    }
+                    .modifier(LocationButtonStyle())
+
+                }
+                Spacer()
+                Button { withAnimation { viewModel.position = .automatic } } label: { ForkButton() }
+                    .padding()
+
             }
         }
         .onAppear {

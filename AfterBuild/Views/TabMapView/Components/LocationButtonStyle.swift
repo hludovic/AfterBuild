@@ -10,14 +10,10 @@ import SwiftUI
 struct LocationButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .scaledToFit()
-            .frame(width: 50, height: 30)
-            .padding(.vertical, 5)
+            .padding(.horizontal)
             .background(Color.afterBuildRed)
             .tint(.afterBuildRed)
             .foregroundColor(.white)
-            .symbolVariant(.fill)
-            .labelStyle(.iconOnly)
             .clipShape(Capsule())
     }
 }
