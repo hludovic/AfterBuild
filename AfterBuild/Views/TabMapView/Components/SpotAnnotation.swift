@@ -26,7 +26,7 @@ struct SpotAnnotation: View {
                 Text("\(min(viewModel.checkedInCount[location.id, default: 0], 99))")
                     .font(.system(size: 11, weight: .bold))
                     .frame(width: 26, height: 18)
-                    .background(Color.afterBuildRed)
+                    .background(Color.brandSecondary)
                     .foregroundStyle(.white)
                     .clipShape(Capsule())
                     .offset(x: 20, y: -28)

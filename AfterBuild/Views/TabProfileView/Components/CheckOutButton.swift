@@ -14,7 +14,7 @@ struct CheckOutButton: View {
             .font(.system(size: 12, weight: .semibold))
             .padding(.vertical, 3)
             .padding(.horizontal, 10)
-            .background(Color.afterBuildRed)
+            .background(Color.brandSecondary)
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

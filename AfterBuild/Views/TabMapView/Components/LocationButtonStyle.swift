@@ -11,8 +11,8 @@ struct LocationButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(.horizontal)
-            .background(Color.afterBuildRed)
-            .tint(.afterBuildRed)
+            .background(Color.brandSecondary)
+            .tint(.brandSecondary)
             .foregroundColor(.white)
             .clipShape(Capsule())
     }

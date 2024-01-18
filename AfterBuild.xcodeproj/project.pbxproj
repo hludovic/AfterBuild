@@ -39,7 +39,6 @@
 		43A098912A90105D00B0942A /* AfterBuildApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A098902A90105D00B0942A /* AfterBuildApp.swift */; };
 		43A098952A90105D00B0942A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43A098942A90105D00B0942A /* Assets.xcassets */; };
 		43A098982A90105D00B0942A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43A098972A90105D00B0942A /* Preview Assets.xcassets */; };
-		43A098A02A90173200B0942A /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0989F2A90173200B0942A /* Color+Ext.swift */; };
 		43A098A42A9017D800B0942A /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A098A32A9017D800B0942A /* AppTabView.swift */; };
 		43A098A62A90184900B0942A /* TabMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A098A52A90184900B0942A /* TabMapView.swift */; };
 		43A098A82A90189B00B0942A /* TabLocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A098A72A90189B00B0942A /* TabLocationsView.swift */; };
@@ -95,7 +94,6 @@
 		43A098942A90105D00B0942A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43A098972A90105D00B0942A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		43A0989E2A90107B00B0942A /* AfterBuild.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AfterBuild.entitlements; sourceTree = "<group>"; };
-		43A0989F2A90173200B0942A /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		43A098A32A9017D800B0942A /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		43A098A52A90184900B0942A /* TabMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMapView.swift; sourceTree = "<group>"; };
 		43A098A72A90189B00B0942A /* TabLocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLocationsView.swift; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 				431407282A97E3C1005B48BF /* CKRecord+Ext.swift */,
 				4351C2CC2AA7F68800592A5E /* UIImage+Ext.swift */,
 				4345ADFA2AA28B9B00900B5D /* CKAsset+Ext.swift */,
-				43A0989F2A90173200B0942A /* Color+Ext.swift */,
 				43A3B6992A951F0800905D3A /* View+Ext.swift */,
 			);
 			path = Extensions;
@@ -470,7 +467,6 @@
 				430EC39D2AB1632F00B90508 /* ProfileModalView.swift in Sources */,
 				432635012AC5347D0045358F /* AppTabViewModel.swift in Sources */,
 				43875CB62AA45BC7000A7519 /* OnboardView.swift in Sources */,
-				43A098A02A90173200B0942A /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

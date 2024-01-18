@@ -14,7 +14,7 @@ struct ForkButton: View {
             .scaledToFit()
             .frame(width: 50, height: 30)
             .padding(.vertical, 5)
-            .background(Color.afterBuildRed)
+            .background(Color.brandSecondary)
             .foregroundColor(.white)
             .clipShape(Capsule())
     }
