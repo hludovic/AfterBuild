@@ -1,0 +1,52 @@
+DEFINE SCHEMA
+
+    RECORD TYPE SpotLocation (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        address         STRING,
+        bannerAsset     ASSET,
+        description     STRING,
+        location        LOCATION,
+        name            STRING SORTABLE,
+        phoneNumber     STRING,
+        squareAsset     ASSET,
+        websiteURL      STRING,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE UserProfile (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        avatar          ASSET,
+        bio             STRING,
+        compagnyName    STRING,
+        firstName       STRING,
+        isCheckedIn     REFERENCE QUERYABLE,
+        lastName        STRING,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Users (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE,
+        roles           LIST<INT64>,
+        userProfile     REFERENCE,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
